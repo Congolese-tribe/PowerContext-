@@ -33,6 +33,8 @@ header:
       limitations under the License.
 
   paths-ignore:
+    # Published competition assets retain their original licenses and attribution.
+    - 'competition/**'
     - '**/*.md'
     - '**/*.mdx'
     - '**/*.json'
