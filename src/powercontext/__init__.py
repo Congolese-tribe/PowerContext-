@@ -63,6 +63,14 @@ from powercontext.sources import (
     SourceRef,
     SourceStore,
 )
+from powercontext.sources.csv_rows import (
+    CSV_ROW_SOURCE_DEFINITION,
+    CSVDocumentInput,
+    CSVRowInput,
+    CSVRowSource,
+    csv_row_source_id,
+    parse_csv_document,
+)
 from powercontext.sources.pdf_pages import (
     PDF_PAGE_SOURCE_DEFINITION,
     PDFDocumentInput,
@@ -73,6 +81,7 @@ from powercontext.sources.pdf_pages import (
 from powercontext.triggers import PolicyTransition, Trigger
 
 __all__ = [
+    "CSV_ROW_SOURCE_DEFINITION",
     "PDF_PAGE_SOURCE_DEFINITION",
     "AdapterSourceDefinition",
     "Artifact",
@@ -86,6 +95,9 @@ __all__ = [
     "ArtifactRef",
     "ArtifactStore",
     "Artifacts",
+    "CSVDocumentInput",
+    "CSVRowInput",
+    "CSVRowSource",
     "ConnectorError",
     "ConnectorSubmissionRejectedError",
     "InvalidArtifactReferenceError",
@@ -123,6 +135,8 @@ __all__ = [
     "SourceStore",
     "Sources",
     "Trigger",
+    "csv_row_source_id",
+    "parse_csv_document",
     "parse_pdf_document",
     "search_pdf_pages",
 ]

@@ -30,6 +30,49 @@ content under the same identity as if it were a new observation.
 
 Source writes and reads are subject to the selected [Scope and access policy](scopes-and-access.md).
 
+## Capture CSV rows
+
+`powercontext.sources.csv_rows` parses offline UTF-8 CSV bytes (including an optional BOM) into one captured
+Source per primary key. No additional dependencies are needed. Parsing is atomic: invalid encoding, malformed
+quoting, duplicate or blank headers and keys, and inconsistent record widths raise `ValueError`.
+Only physically empty records after the header are ignored; header-only documents return `()`.
+
+```python
+from pathlib import Path
+
+from powercontext import CSV_ROW_SOURCE_DEFINITION, CSVDocumentInput, parse_csv_document
+from powercontext.builtin.runtime import SubmitSourceObservation
+from powercontext.sources import SourceDefinitionRegistry, manifest_for_definition, project_source_for_transport
+
+
+async def capture_csv(runtime, scope_id: str, path: Path, document_id: str, primary_key: str):
+    rows = parse_csv_document(CSVDocumentInput(
+        document_id=document_id, primary_key=primary_key, content=path.read_bytes(),
+    ))
+    registry = SourceDefinitionRegistry((CSV_ROW_SOURCE_DEFINITION,))
+    await runtime.ingestion.register(manifest_for_definition(CSV_ROW_SOURCE_DEFINITION))
+    for row in rows:
+        source = await registry.resolve(row)
+        await runtime.ingestion.submit(SubmitSourceObservation(
+            scope_id=scope_id,
+            observation=project_source_for_transport(registry, source),
+        ))
+    return rows
+```
+
+Column names, primary-key values, and fields retain their original strings, spaces, and order. Select a header
+such as `" id "` using that exact name. Document IDs must be non-empty without surrounding whitespace.
+Each identity is `csv:{encoded_document_id}:{encoded_primary_key_value}`, with each component encoded separately
+using `urllib.parse.quote(component, safe="")`; identities exceeding 256 characters are rejected.
+Reordering records or editing non-key fields does not change row identity.
+
+The `powercontext.text-evidence` projection contains compact Unicode JSON in original column order. Its metadata
+has exactly `document_id`, `primary_key`, `primary_key_value`, `columns`, and the complete `row` object.
+Use a Memory pipeline that retains each projection as an entry with its Source reference, then flush before
+searching. Read a search result with `GetMemoryEntryRequest(citation=MemoryCitation(...))`, retaining all three
+fields from the hit: `memory_ref`, `entry_id`, and `entry_version_id`. Runtime persistence keeps that exact
+entry and its complete row evidence available after restart.
+
 ## Capture complete PDF pages
 
 Install `powercontext[builtin,pdf]` to use the PDF page Source. The PDF extra pins `pypdf==6.19.0`.

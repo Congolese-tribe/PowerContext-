@@ -399,7 +399,8 @@ class SourceRepository:
         source_type: str,
         envelope: _StoredSourcePayload,
     ) -> tuple[Source, SourceRef]:
-        payload = rfc8785.dumps(envelope.value)
+        rfc8785.dumps(envelope.value)
+        payload = _JSON_OBJECT.dump_json(envelope.value)
         if envelope.representation == "observation":
             source = load_model(
                 SourceObservation,
@@ -454,7 +455,11 @@ def _dump_source(
             representation=representation,
             value=_JSON_OBJECT.validate_python(source.model_dump(mode="json", by_alias=True)),
         )
-        return rfc8785.dumps(envelope.model_dump(mode="json"))
+        # Keep the canonical JSON validity checks, but retain object insertion
+        # order on disk: projections may carry an original table's column order.
+        # Idempotency compares decoded values rather than serialized bytes.
+        rfc8785.dumps(envelope.model_dump(mode="json"))
+        return envelope.model_dump_json().encode("utf-8")
     except (TypeError, ValueError) as error:
         raise InvalidStoredPayloadError("source", name, "value is not JSON serializable") from error
 
