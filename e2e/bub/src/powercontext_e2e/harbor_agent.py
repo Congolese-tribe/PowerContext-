@@ -138,10 +138,13 @@ def _install_bub_command(*, powercontext: bool = True) -> str:
 
 def _install_acp_server_command() -> str:
     runner_bin = f"{harbor_acp.AcpAgent._RUNNER_VENV_PATH}/bin"
+    # Bub's plugin installer creates a project with an unpinned Bub dependency.
+    # Preserve the harness version so ACP tools and native commands share one API.
     return (
         "set -eu; "
         f"PATH={runner_bin}:$PATH BUB_HOME={REMOTE_BUB_HOME} CODEX_HOME={REMOTE_CODEX_HOME} "
         f"BUB_PROJECT={REMOTE_BUB_PROJECT} "
         f"{_tool_environment()} {REMOTE_BIN_DIR}/bub install "
+        f"{shlex.quote(f'bub=={BUB_VERSION}')} "
         f"{shlex.quote(f'bub-acp-server=={BUB_ACP_SERVER_VERSION}')}"
     )
