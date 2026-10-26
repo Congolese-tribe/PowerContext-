@@ -32,6 +32,7 @@ from powercontext.sources import SourceDefinitionRegistry, manifest_for_definiti
 from powercontext.sources.pdf_pages import (
     PDF_PAGE_SOURCE_DEFINITION,
     PDFDocumentInput,
+    PDFPageInput,
     parse_pdf_document,
     search_pdf_pages,
 )
@@ -155,5 +156,43 @@ def test_restart_retrieval_limits_scope_and_original_revision(tmp_path: Path) ->
                 for citation in repeated
             ]
             assert len(source_ids) == len(set(source_ids))
+
+    asyncio.run(scenario())
+
+
+def test_long_question_recalls_page_with_one_decisive_term(tmp_path: Path) -> None:
+    async def scenario() -> None:
+        registry = SourceDefinitionRegistry((PDF_PAGE_SOURCE_DEFINITION,))
+        source = await registry.resolve(
+            PDFPageInput(
+                document_id="ACME_2024_10K",
+                document_sha256="0" * 64,
+                page_number=1,
+                text="Litigation 741",
+            )
+        )
+        observation = project_source_for_transport(registry, source)
+        config = BuiltinConfig(database=SQLiteConfig(url=f"sqlite+aiosqlite:///{tmp_path / 'pdf-long-query.db'}"))
+        async with open_builtin_runtime(config) as runtime:
+            assert runtime.scopes is not None
+            scope = await runtime.scopes.create(
+                ScopeDraft(title="Long query", summary="PDF evidence", idempotency_key="long-query")
+            )
+            await runtime.ingestion.register(manifest_for_definition(PDF_PAGE_SOURCE_DEFINITION))
+            await runtime.ingestion.submit(SubmitSourceObservation(scope_id=scope.scope_id, observation=observation))
+        async with open_builtin_runtime(config, candidate_pipeline=PageEvidencePipeline()) as runtime:
+            memory = runtime.memory.for_scope(scope.scope_id)
+            assert (await memory.flush()).processed
+        async with open_builtin_runtime(config) as runtime:
+            memory = runtime.memory.for_scope(scope.scope_id)
+            citations = await search_pdf_pages(
+                memory,
+                "For ACME in fiscal year 2024, considering material special ongoing matters, "
+                "what was the litigation amount?",
+                limit=20,
+            )
+            assert len(citations) == 1
+            record = await memory.get(GetMemoryEntryRequest(citation=citations[0]))
+            assert record.entry.sources[0].source_id == source.name
 
     asyncio.run(scenario())

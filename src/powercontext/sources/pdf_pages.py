@@ -372,6 +372,7 @@ def _rank_pages(
         weights.setdefault(term, 0.45)
     phrases = [" ".join(_lexical_terms(phrase)) for phrase in expansions]
     query_sequence = _lexical_terms(" ".join(words))
+    compact_query = "".join(query_sequence)
     phrases.extend(" ".join(query_sequence[index : index + 2]) for index in range(len(query_sequence) - 1))
 
     def score(index: int) -> float:
@@ -388,14 +389,44 @@ def _rank_pages(
             :2000
         ]
         total += 12.0 * sum(bool(re.search(heading, prefix, re.MULTILINE)) for heading in headings)
-        document = set(_lexical_terms(hits[index].text.partition("\n")[0]))
+        document_id = hits[index].text.partition("\n")[0]
+        document = set(_lexical_terms(document_id))
         # The document identity is present once in the standard projection. It
         # disambiguates companies and revisions without a document-name lookup.
-        total += 3.0 * sum(term in document for term in query_sequence if len(term) > 2 and not term.isdigit())
+        total += 12.0 * sum(term in document for term in query_sequence if len(term) > 2 and not term.isdigit())
         total += 0.5 * sum(term in document for term in query_sequence if term.isdigit())
+        company = "".join(
+            term
+            for term in _lexical_terms(re.split(r"(?<!\d)(?:19|20)\d{2}", document_id, maxsplit=1)[0])
+            if term not in _STOP_WORDS
+        )
+        if len(company) >= 2 and company in compact_query:
+            total += 12.0
         return total
 
     return [hits[index] for index in sorted(range(len(hits)), key=lambda index: (-score(index), index))]
+
+
+async def _search_candidate_pages(
+    memory: ScopedMemoryApplication, queries: tuple[str, ...], candidate_limit: int
+) -> tuple[MemoryHit, ...]:
+    from powercontext.builtin.runtime import SearchMemoryRequest
+
+    pool: dict[tuple[str, str, str], MemoryHit] = {}
+    for query in queries:
+        page = await memory.search(SearchMemoryRequest(query=query, mode="fts", limit=candidate_limit))
+        for hit in page.hits:
+            pool.setdefault((hit.memory_ref.artifact_id, hit.entry_id, hit.entry_version_id), hit)
+    # The projection includes the document ID on every page. Once a matching
+    # page reveals the ID, retrieve its whole report through Memory so statement
+    # pages lacking question words can compete.
+    document_ids = tuple(dict.fromkeys(hit.text.partition("\n")[0] for hit in pool.values() if "\n" in hit.text))
+    for document_id in document_ids:
+        page = await memory.search(SearchMemoryRequest(query=document_id, mode="fts", limit=2000))
+        for hit in page.hits:
+            if hit.text.startswith(f"{document_id}\n"):
+                pool.setdefault((hit.memory_ref.artifact_id, hit.entry_id, hit.entry_version_id), hit)
+    return tuple(pool.values())
 
 
 async def search_pdf_pages(
@@ -407,7 +438,7 @@ async def search_pdf_pages(
     No global index, filesystem access, model, or cross-scope cache is used.
     A non-positive limit or a query without searchable terms returns no pages.
     """
-    from powercontext.builtin.runtime import GetMemoryEntryRequest, SearchMemoryRequest
+    from powercontext.builtin.runtime import GetMemoryEntryRequest
 
     if limit <= 0:
         return ()
@@ -415,14 +446,25 @@ async def search_pdf_pages(
     if not words:
         return ()
     sections = tuple(section for section in _REPORT_SECTIONS if re.search(section[0], question, re.IGNORECASE))
-    queries = tuple(dict.fromkeys((" ".join(words[:64]), *expansions, *(section[1] for section in sections))))
-    pool: dict[tuple[str, str, str], MemoryHit] = {}
+    # Long natural-language questions can require several overlapping terms in
+    # Memory's FTS admission gate. Search individual salient terms as well so a
+    # page with one decisive term reaches the local ranker.
+    salient = tuple(
+        term
+        for term in dict.fromkeys((*words[:8], *sorted(words, key=len, reverse=True)[:8], *words[-4:]))
+        if len(term) >= 3 and not term.isdigit()
+    )[:10]
+    queries = tuple(
+        dict.fromkeys((
+            " ".join(words[:64]),
+            *expansions,
+            *(section[1] for section in sections),
+            *salient,
+        ))
+    )
     candidate_limit = max(100, min(400, limit * 10))
-    for query in queries:
-        page = await memory.search(SearchMemoryRequest(query=query, mode="fts", limit=candidate_limit))
-        for hit in page.hits:
-            pool.setdefault((hit.memory_ref.artifact_id, hit.entry_id, hit.entry_version_id), hit)
-    ranked = _rank_pages(tuple(pool.values()), words, expansions, tuple(section[2] for section in sections))
+    candidates = await _search_candidate_pages(memory, queries, candidate_limit)
+    ranked = _rank_pages(candidates, words, expansions, tuple(section[2] for section in sections))
     citations: list[MemoryCitation] = []
     seen: set[str] = set()
     for hit in ranked:
