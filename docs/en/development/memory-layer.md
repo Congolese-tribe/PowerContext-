@@ -164,6 +164,42 @@ the same citation fields through list and exact-read operations.
 unavailable. Explicit `vector` and `hybrid` requests fail when the configured profile does not provide that
 capability.
 
+## Use HTTP reranking
+
+Inject `HTTPMemoryReranker` through `memory_reranker` to score the coarse candidate pool before Memory search returns
+its final selection:
+
+```python
+import httpx
+
+from powercontext.builtin.artifacts.memory import HTTPMemoryReranker
+from powercontext.builtin.runtime import BuiltinConfig, open_builtin_runtime
+
+async with httpx.AsyncClient(timeout=30) as client:
+    reranker = HTTPMemoryReranker(
+        "https://reranker.example/score", client=client, batch_size=7
+    )
+    async with open_builtin_runtime(
+        BuiltinConfig(), memory_reranker=reranker
+    ) as runtime:
+        ...
+```
+
+The caller owns the client. Each POST contains `query` and `candidates`, whose records contain `rank` and `text`.
+Ranks are one-based positions in the complete candidate pool and remain unchanged across batches. The response must
+contain only `scores`, a list of records containing exactly an integer `rank` and a finite numeric `score`. Each
+batch response must cover its requested ranks exactly once, in any order.
+
+All batches participate in one selection: descending score, then ascending original rank for ties. Search resolves
+the selected ranks to the original hits, preserving text, Artifact reference, entry ID, entry version ID, and coarse
+retrieval score. The rerank trace reports the policy ID (default `http-cross-encoder-v1`) and actual HTTP request
+count in `usage.requests`. Configure `RuntimeConfig.memory_rerank_candidate_limit` to include the desired coarse pool;
+batch size limits each HTTP request, not the pool size.
+
+`batch_size` must be a positive integer. Direct `rerank` calls require nonempty candidates and an integer `limit`
+between one and the candidate count. Invalid bounds, JSON, schema, or rank coverage raise `ValueError`. Non-2xx
+responses and transport failures retain their `httpx` exceptions. The adapter does not retry or follow redirects.
+
 ## Enable SQLite vector search
 
 SQLite vector search is enabled when an embedding model is supplied. The `powercontext[builtin]` extra bundles

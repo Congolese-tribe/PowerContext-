@@ -153,6 +153,39 @@ operation 返回相同的 citation 字段。
 `mode="auto"` 会选择当前可用的最强模式，并可在 query embedding 暂时不可用时回退到 FTS。显式请求 `vector`
 或 `hybrid` 时，如果 profile 没有提供相应能力，操作会失败。
 
+## 使用 HTTP 重排
+
+通过 `memory_reranker` 注入 `HTTPMemoryReranker`，可以在 Memory 搜索返回最终结果前对粗排候选池评分：
+
+```python
+import httpx
+
+from powercontext.builtin.artifacts.memory import HTTPMemoryReranker
+from powercontext.builtin.runtime import BuiltinConfig, open_builtin_runtime
+
+async with httpx.AsyncClient(timeout=30) as client:
+    reranker = HTTPMemoryReranker(
+        "https://reranker.example/score", client=client, batch_size=7
+    )
+    async with open_builtin_runtime(
+        BuiltinConfig(), memory_reranker=reranker
+    ) as runtime:
+        ...
+```
+
+客户端由调用方管理生命周期。每个 POST 包含 `query` 和 `candidates`，每个候选包含 `rank` 和 `text`。
+`rank` 是候选在完整候选池中的一基序号，分批后保持不变。响应只能包含 `scores` 数组，每个记录恰好包含
+整数 `rank` 和有限数值 `score`。响应可以乱序，但必须恰好覆盖该批请求的每个序号一次。
+
+所有批次统一按分数降序选择，平分时按原始序号升序排列。搜索通过所选序号取回原始 hit，保留正文、Artifact
+引用、entry ID、entry version ID 和粗排分数。重排 trace 包含策略 ID（默认 `http-cross-encoder-v1`），并通过
+`usage.requests` 报告实际 HTTP 请求数。使用 `RuntimeConfig.memory_rerank_candidate_limit` 设置粗排候选池大小；
+`batch_size` 只限制单次 HTTP 请求中的候选数。
+
+`batch_size` 必须为正整数。直接调用 `rerank` 时，候选不能为空，`limit` 必须为一至候选总数之间的整数。
+非法参数、JSON、响应 schema 或序号覆盖抛出 `ValueError`。非 2xx 响应和网络错误保留 `httpx` 异常。
+适配器不重试，也不跟随重定向。
+
 ## 启用 SQLite 向量检索
 
 提供 embedding model 后，SQLite 会启用向量检索。`powercontext[builtin]` 已捆绑 `sqlite-vec`，无需配置 extension
