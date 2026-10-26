@@ -6,6 +6,7 @@
     "releasing",
     "core-protocol",
     "memory-layer",
+    "context-pack",
     "plugin-contract",
     "pydantic-ai-inference",
     "remote-access-implementation",
