@@ -1,3 +1,6 @@
+# Published competition fixtures have their own checks and must remain unchanged.
+exclude: ^competition/
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: "v6.0.0"
