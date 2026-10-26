@@ -123,6 +123,45 @@ powercontext doctor pi
 `doctor pi` checks that the Pi executable is available and that Pi lists the PowerContext package. Restart Pi after
 changing PowerContext environment variables.
 
+## Capture session branch history with Python
+
+`powercontext.sources.pi_session` supports offline Pi v3 JSONL history capture:
+
+```python
+from pathlib import Path
+
+from powercontext import PI_EVENT_SOURCE_DEFINITION, PiSessionConnector, PiSessionInput, parse_pi_session
+from powercontext.sources import SourceDefinitionRegistry
+
+events = parse_pi_session(PiSessionInput(content=Path("session.jsonl").read_bytes(), leaf_id="selected-node"))
+registry = SourceDefinitionRegistry((PI_EVENT_SOURCE_DEFINITION,))
+connector = PiSessionConnector("session.jsonl", leaf_id="selected-node")
+```
+
+Omitting `leaf_id` selects the last node. Parsing validates the entire archive before returning a root-to-leaf tuple.
+Control nodes preserve ancestry without producing text. Messages, tool calls, full tool results, shell transcripts,
+custom messages, compaction summaries, and branch summaries retain their original records; summaries preserve earlier
+evidence. Thinking, images, and system messages do not produce text evidence. Recorded commands are never executed.
+
+Register `PI_EVENT_SOURCE_DEFINITION` with Runtime ingestion using `manifest_for_definition`. Run the connector through
+`ConnectorLifecycle` with a binding whose connector name is `pi-session-history` and version is `1`. The sink resolves
+each `PiEventInput` through the registry, calls `project_source_for_transport`, and submits the observation through
+`runtime.ingestion.submit`. Its checkpoint store delegates to `runtime.ingestion.checkpoint` and
+`runtime.ingestion.commit`; keep the same binding when changing the selected branch or restarting.
+
+Each `pi-event` Source has an identity derived only from the session and event IDs, and captures the complete event.
+Its `powercontext.text-evidence/1` projection preserves the full text and identity metadata. `registry.read(source)`
+returns the corresponding `PiEventInput`. Memory consumers may split a large result into entries while citing the
+same complete Source.
+
+The connector checks all previously imported records in the current session, including other branches, before
+submitting unseen visible events. Changed or missing imported records raise `ValueError`. Invalid input and failed
+submissions leave the committed checkpoint unchanged; retrying identical durable submissions is idempotent.
+Checkpoint version `1` retains each imported session/event ID and a SHA-256 digest of its sorted JSON record, so
+JSON object key order and file formatting do not affect resume. Each run reads the full file and checks imported
+history; checkpoint storage grows with the number of imported events. This API does not schedule collection in the
+Pi plugin automatically.
+
 ## Environment variables
 
 | Variable | Default | Meaning |

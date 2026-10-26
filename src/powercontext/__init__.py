@@ -78,11 +78,20 @@ from powercontext.sources.pdf_pages import (
     parse_pdf_document,
     search_pdf_pages,
 )
+from powercontext.sources.pi_session import (
+    PI_EVENT_SOURCE_DEFINITION,
+    PiEventInput,
+    PiEventSource,
+    PiSessionConnector,
+    PiSessionInput,
+    parse_pi_session,
+)
 from powercontext.triggers import PolicyTransition, Trigger
 
 __all__ = [
     "CSV_ROW_SOURCE_DEFINITION",
     "PDF_PAGE_SOURCE_DEFINITION",
+    "PI_EVENT_SOURCE_DEFINITION",
     "AdapterSourceDefinition",
     "Artifact",
     "ArtifactAddress",
@@ -112,6 +121,10 @@ __all__ = [
     "InvalidSourceResultError",
     "PDFDocumentInput",
     "PDFPageInput",
+    "PiEventInput",
+    "PiEventSource",
+    "PiSessionConnector",
+    "PiSessionInput",
     "PolicyTransition",
     "PowerContext",
     "PowerContextError",
@@ -138,5 +151,6 @@ __all__ = [
     "csv_row_source_id",
     "parse_csv_document",
     "parse_pdf_document",
+    "parse_pi_session",
     "search_pdf_pages",
 ]

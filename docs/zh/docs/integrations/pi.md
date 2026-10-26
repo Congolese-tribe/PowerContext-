@@ -120,6 +120,41 @@ powercontext doctor pi
 `doctor pi` 会检查 Pi 可执行文件是否存在，以及 Pi 是否列出了 PowerContext package。修改 PowerContext 环境变量后
 需要重启 Pi。
 
+## 使用 Python 采集会话分支历史
+
+`powercontext.sources.pi_session` 支持离线采集 Pi v3 JSONL 会话历史：
+
+```python
+from pathlib import Path
+
+from powercontext import PI_EVENT_SOURCE_DEFINITION, PiSessionConnector, PiSessionInput, parse_pi_session
+from powercontext.sources import SourceDefinitionRegistry
+
+events = parse_pi_session(PiSessionInput(content=Path("session.jsonl").read_bytes(), leaf_id="selected-node"))
+registry = SourceDefinitionRegistry((PI_EVENT_SOURCE_DEFINITION,))
+connector = PiSessionConnector("session.jsonl", leaf_id="selected-node")
+```
+
+省略 `leaf_id` 时选择最后一个节点。解析器先校验完整文件，再按根到叶的顺序返回事件元组。控制节点保留祖先连接，
+不产生文本。消息、工具调用、完整工具结果、Shell 执行记录、自定义消息、压缩摘要和分支摘要均保留完整原始记录，
+摘要不会删除之前的证据。思考、图片和系统消息不生成文本证据，记录中的命令不会被执行。
+
+使用 `manifest_for_definition` 向 Runtime ingestion 注册 `PI_EVENT_SOURCE_DEFINITION`，再通过
+`ConnectorLifecycle` 运行连接器；binding 的 connector 名为 `pi-session-history`，版本为 `1`。
+sink 通过 registry 解析每个 `PiEventInput`，调用 `project_source_for_transport` 后使用
+`runtime.ingestion.submit` 持久化。checkpoint store 分别委托给 `runtime.ingestion.checkpoint` 和
+`runtime.ingestion.commit`。切换分支或重启时沿用同一 binding。
+
+每条 `pi-event` Source 的身份仅由 session ID 和 event ID 决定，并完整保存事件。
+`powercontext.text-evidence/1` projection 包含全文及身份 metadata，`registry.read(source)` 返回对应的
+`PiEventInput`。Memory 消费方可以把大工具结果拆成多条记忆，每条仍引用同一份完整 Source。
+
+连接器先检查当前会话内所有已采集记录，包括其他分支，再提交所选分支上尚未采集的可见事件。
+已采集记录被改写或删除时抛出 `ValueError`。损坏输入或提交失败不会推进已提交的 checkpoint，重复提交相同的
+持久化事件保持幂等。版本 `1` 的 checkpoint 保存已采集的 session/event ID 及排序后 JSON record 的 SHA-256
+校验值，JSON 对象键顺序和文件排版变化不影响恢复。每次运行均完整读取文件并核对历史，checkpoint 存储量随
+已采集事件数增长。此接口不会自动为 Pi 插件安排采集任务。
+
 ## 环境变量
 
 | 变量 | 默认值 | 含义 |
