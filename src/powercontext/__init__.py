@@ -63,9 +63,17 @@ from powercontext.sources import (
     SourceRef,
     SourceStore,
 )
+from powercontext.sources.pdf_pages import (
+    PDF_PAGE_SOURCE_DEFINITION,
+    PDFDocumentInput,
+    PDFPageInput,
+    parse_pdf_document,
+    search_pdf_pages,
+)
 from powercontext.triggers import PolicyTransition, Trigger
 
 __all__ = [
+    "PDF_PAGE_SOURCE_DEFINITION",
     "AdapterSourceDefinition",
     "Artifact",
     "ArtifactAddress",
@@ -90,6 +98,8 @@ __all__ = [
     "InvalidSourceProjectionError",
     "InvalidSourceReferenceError",
     "InvalidSourceResultError",
+    "PDFDocumentInput",
+    "PDFPageInput",
     "PolicyTransition",
     "PowerContext",
     "PowerContextError",
@@ -113,4 +123,6 @@ __all__ = [
     "SourceStore",
     "Sources",
     "Trigger",
+    "parse_pdf_document",
+    "search_pdf_pages",
 ]
