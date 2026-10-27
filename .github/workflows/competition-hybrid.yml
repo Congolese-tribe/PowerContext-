@@ -1,0 +1,49 @@
+name: Competition seekdb hybrid
+
+on:
+  push:
+    branches: [codex/competition-2-11]
+    paths:
+      - src/powercontext/builtin/persistence/**
+      - src/powercontext/builtin/runtime/composition.py
+      - tests/e2e/test_seekdb_hybrid.py
+      - tests/fixtures/seekdb_hybrid/**
+      - .github/workflows/competition-hybrid.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: competition-hybrid-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pinned-native-seekdb:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Build the published fixed-dependency environment
+        run: docker compose -f competition/compose.yaml build selftest
+      - name: Run the original native hybrid acceptance
+        env:
+          POWERCONTEXT_CANDIDATE: ${{ github.workspace }}
+        run: |
+          docker compose -f competition/compose.yaml run --rm selftest \
+            python -m pytest -q -s -c /selftest/pytest.ini --confcutdir=/selftest \
+            /selftest/challenges/retrieval-02-hybrid-search/acceptance \
+            2>&1 | tee hybrid-native.log
+      - name: Upload native execution diagnostics
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: seekdb-hybrid-${{ github.sha }}
+          path: hybrid-native.log
+          if-no-files-found: error
+          retention-days: 7
