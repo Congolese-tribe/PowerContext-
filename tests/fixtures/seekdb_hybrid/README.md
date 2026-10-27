@@ -1,0 +1,11 @@
+# Native seekdb regression fixture
+
+This supplemental fixture contains 173 original SciFact documents and the first 20 evidence-bearing development claims whose evidence documents are outside the competition's eight-document public sample. All relevant documents are included; the remaining documents are sampled from the original corpus with Python's `random.Random(2026)`. Document IDs are sorted numerically. Titles and abstract sentences are joined with spaces and normalized to NFC.
+
+Source: [SciFact](https://github.com/allenai/scifact/tree/68b98a56d93e0f9da0d2aab4e6c3294699a0f72e), by David Wadden, Shanchuan Lin, Kyle Lo, Lucy Lu Wang, Madeleine van Zuylen, Arman Cohan, and Hannaneh Hajishirzi, *Fact or Fiction: Verifying Scientific Claims*, EMNLP 2020. The original release archive is [data.tar.gz](https://scifact.s3-us-west-2.amazonaws.com/release/latest/data.tar.gz); its SHA-256 is `11c621288d41ac144d29b13b0f8503b3820b7d6e8b1f6ff24dff335c196d76be`.
+
+The fixed vectors are supplemental lexical vectors, not the competition's hidden embeddings. They use sublinear TF-IDF with document-frequency weights from the 173 documents, a full SVD preserving pairwise dot products across documents and queries, unit normalization, and zero padding to 384 dimensions. Relevance annotations are not used to generate vectors. Compressed little-endian float64 rows contain documents followed by queries, with a checksum over the uncompressed bytes. Production code reads neither this fixture nor its relevance labels.
+
+The test loads three independent scopes into real seekdb, warms both implementations, alternates their order, and compares full `Memory.search` calls against the existing two-query index composition on the same database, heads, and vectors. Results establish behavior on this public regression corpus; they do not establish results on the unavailable formal evaluation corpus or vectors.
+
+Claims and relevance annotations are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Abstracts originate from Semantic Scholar's [S2ORC](https://github.com/allenai/s2orc) and are licensed under [ODC-By 1.0](https://opendatacommons.org/licenses/by/1-0/). See [LICENSE.md](LICENSE.md).
