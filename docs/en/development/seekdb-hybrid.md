@@ -17,6 +17,11 @@ optional all/any tag predicates, and the candidate limit inside the database. Re
 rows carry their channel and distance. An outer ordering preserves channel ranks and
 breaks equal scores by Memory artifact, entry, and entry-version identity.
 
+For tagged vector queries, a grouped selection of tag identities drives a nested-loop
+join into the native vector index. This applies the tag restriction before candidates
+are truncated, including selective filters with a candidate limit of one. A correlated
+tag-count predicate above an ANN scan can otherwise discard all truncated candidates.
+
 Shared Memory admission, reciprocal-rank fusion, identity deduplication, final limiting,
 and exact body reads remain in the existing product flow. Head validation and vector
 completeness checks can execute additional statements; they are not candidate queries.
@@ -58,6 +63,24 @@ embeddings. Logs include per-query measurements, median complete-search latency,
 baseline latency, and full-ranking equality; one candidate statement alone does not
 establish an end-to-end speedup. Dataset attribution and licenses are recorded in
 `tests/fixtures/seekdb_hybrid/README.md`.
+
+The [native verification run](https://github.com/Congolese-tribe/PowerContext-/actions/runs/40492741635)
+passed both the original public acceptance and the supplemental native regression on
+product commit `b346234b6abd95da130290c45f4f6369b05acdf9`. Its observations were:
+
+| Measurement | Single-statement path | Existing two-query path |
+| --- | --- | --- |
+| Candidate statements per hybrid search | 1 | 2 |
+| Mean Recall@10, 60 searches | 1.000 | 1.000 |
+| Mean MRR@10 | 0.975 | 0.975 |
+| Median complete search latency | 53.578 ms | 57.350 ms |
+| Full-ranking equality | 100% | Reference |
+
+Every query passed individual recall and reciprocal-rank non-regression checks. The
+observed ratio of median latencies was 0.9342. These values describe this run with its
+supplemental lexical embeddings; they do not predict formal evaluation results or
+establish a general performance advantage. The same run passed native index plans
+for all/any tag filters with candidate limits one and two.
 
 Run the public check in the fixed Linux environment with:
 

@@ -14,6 +14,10 @@ SQL 使用 `UNION ALL` 合并两个分别排序、限制数量的子查询。全
 scope、请求中的 Memory artifact、可选的 all/any 标签过滤和 candidate limit。
 结果保留通道和向量距离；外层按通道、分数及 artifact、entry、entry version 身份排序。
 
+带标签的向量查询先按条目身份分组选择标签，再通过嵌套循环连接原生向量索引，使标签限制在候选截取前
+生效，覆盖 candidate limit 为 1 的极窄过滤。若将相关标签计数留在 ANN 扫描上方，可能把已截取的
+候选全部过滤掉。
+
 已有 Memory 流程继续负责候选准入、RRF 融合、身份去重、最终数量限制和精确正文读取。
 当前 head 校验和向量完整性检查可以执行额外语句，它们不属于候选查询。
 FTS-only、vector-only 继续委托已有索引。SQLite、OceanBase 和未配置 embedding model 的
@@ -45,6 +49,22 @@ artifact 的隔离。
 该测量不能替代未公开的正式语料与 embedding 验收。日志报告逐查询结果、完整搜索延迟中位数、
 双查询延迟和完整排序一致率；候选查询减少到一条不等于已经证明端到端加速。
 数据署名和许可见 `tests/fixtures/seekdb_hybrid/README.md`。
+
+[原生验证记录](https://github.com/Congolese-tribe/PowerContext-/actions/runs/40492741635)
+在产品提交 `b346234b6abd95da130290c45f4f6369b05acdf9` 上通过原始公开验收及补充原生回归，
+观测结果如下：
+
+| 测量项 | 单 SQL 路径 | 原有双查询路径 |
+| --- | --- | --- |
+| 每次 hybrid 的候选 SQL 数 | 1 | 2 |
+| 60 次查询的平均 Recall@10 | 1.000 | 1.000 |
+| 平均 MRR@10 | 0.975 | 0.975 |
+| 完整搜索延迟中位数 | 53.578 ms | 57.350 ms |
+| 完整排序一致率 | 100% | 对照 |
+
+所有查询逐条通过召回和倒数排名不退化检查。延迟中位数比为 0.9342。这些数值仅描述本次使用补充
+词项向量的运行，不预测正式评测结果，也不代表普遍的性能优势。同次运行还通过了 all/any 标签、
+candidate limit 为 1 和 2 时的原生索引计划及候选检查。
 
 在固定 Linux 环境运行公开检查：
 
