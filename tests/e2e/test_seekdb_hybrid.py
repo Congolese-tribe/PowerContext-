@@ -19,7 +19,6 @@ from __future__ import annotations
 import base64
 import hashlib
 import json
-import re
 import struct
 import zlib
 from contextlib import contextmanager
@@ -188,23 +187,20 @@ async def _filtered_candidates(contexts, model):
 
 async def _diagnose_tagged_vectors(connection, statement, parameters):
     """Keep native plan evidence when a highly selective filter loses candidates."""
-    membership = """AND (m.scope_id, m.memory_artifact_id, m.entry_id) IN (
+    start = statement.index("AND (SELECT COUNT(*) FROM pc_artifact_tags AS tags")
+    end = statement.index("ORDER BY", start)
+    predicate = statement[start:end]
+    tail = predicate.split("AND tags.tag_key_hash IN", 1)[1]
+    membership = (
+        """AND (m.scope_id, m.memory_artifact_id, m.entry_id) IN (
         SELECT tags.scope_id, tags.artifact_id, tags.target_id FROM pc_artifact_tags AS tags
         WHERE tags.family = 'memory' AND tags.target_type = 'memory_entry'
-          AND tags.tag_key_hash IN (%s, %s) AND tags.tag_key IN (%s, %s)
-        GROUP BY tags.scope_id, tags.artifact_id, tags.target_id HAVING COUNT(*) >= %s
-    )"""
+          AND tags.tag_key_hash IN"""
+        + tail.replace(") >=", " GROUP BY tags.scope_id, tags.artifact_id, tags.target_id HAVING COUNT(*) >=")
+        + ")\n"
+    )
     for shape in ("correlated", "membership"):
-        sql = (
-            statement
-            if shape == "correlated"
-            else re.sub(
-                r"AND \(SELECT COUNT\(\*\) FROM pc_artifact_tags AS tags.*?\) >= %s",
-                membership,
-                statement,
-                flags=re.DOTALL,
-            )
-        )
+        sql = statement if shape == "correlated" else statement.replace(predicate, membership)
         for hint in (
             "",
             "/*+ VECTOR_INDEX(m ix_pc_memory_vector_entries_embedding pre_filter) */",
