@@ -30,6 +30,48 @@ remaining distinct terms, with a minimum of two matches; one- or two-term querie
 prepared context share this rule, including when the optional recall gate relaxes the threshold. Stored text and
 vector queries are unchanged, and matching words alone do not establish semantic relevance.
 
+## Withdraw and restore supporting sources
+
+The built-in Python Runtime accepts explicit evidence dependencies through `runtime.lifecycle.for_scope(scope_id)`.
+Register captured Sources, readable Memory citations, and exact Topic Memory references in parent-first order:
+
+```python
+from powercontext.builtin.runtime.source_lifecycle import SourceLifecycleEvent
+
+lifecycle = runtime.lifecycle.for_scope(scope_id)
+await lifecycle.register_source("source-a", source_ref, revision=3)
+await lifecycle.register_memory("fact-a", citation, parents=("source-a",), policy="all")
+await lifecycle.register_topic("topic-a", topic_ref, parents=("fact-a",), policy="any")
+
+active_ids = await lifecycle.apply(SourceLifecycleEvent(
+    node_id="source-a", revision=3, sequence=1, available=False, reason="Source withdrawn"
+))
+historical = await lifecycle.resolve("fact-a", purpose="audit")
+await lifecycle.apply(SourceLifecycleEvent(
+    node_id="source-a", revision=3, sequence=2, available=True, reason="Source restored"
+))
+original = await lifecycle.resolve("fact-a", purpose="generation")
+```
+
+Each node's entire body uses one support rule: `all` needs every parent; `any` needs one parent that independently
+supports the whole body. Availability propagates through Memory and Topic nodes. Registration immediately applies
+current support, including when a parent is already withdrawn. Unsupported Memory entries become inactive;
+unsupported Topic revisions leave native search and PreparedContext. Audit reads retain exact historical bodies,
+and restoration returns the original registered references without creating new body versions.
+
+Bindings are immutable and node IDs are unique within a Scope. Identical registration is idempotent; conflicting
+bindings, missing or repeated parents, and cycles raise `SourceLifecycleError`. Keep one writer per Scope and do not
+edit registered Memory bodies while bound. The positive source lifecycle `revision` is independent of Artifact
+revisions. Each source's positive `sequence` must increase; an exact repeat, including `reason`, is idempotent.
+Unknown nodes, stale events, revision mismatches, and unsupported resolution purposes raise `SourceLifecycleError`.
+
+Registrations, event intent, and desired states persist in the Runtime database. If a native Memory state write
+fails, retry the identical event, including after reopening the Runtime. The retry completes missing transitions;
+already completed transitions and successful event replays create no additional Memory revisions. Propagation is
+recoverable across multiple native writes, so an interrupted call may leave a partially updated native view until
+retried. Existing databases receive the lifecycle tables on startup; unregistered content keeps its existing behavior.
+This API is available on the built-in Python Runtime.
+
 ## Automatic context and extraction
 
 Recall hooks ask the Server for bounded PreparedContext. An `empty` result is valid when no relevant information is

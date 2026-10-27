@@ -144,6 +144,7 @@ from powercontext.builtin.persistence.artifact_governance import (
     ArtifactLifecycleState,
 )
 from powercontext.builtin.persistence.skill_publications import SkillPublication
+from powercontext.builtin.persistence.source_lifecycle import SourceLifecycleRepository
 from powercontext.builtin.publication import ArtifactPublicationApplication
 from powercontext.builtin.records import (
     ArtifactCreated,
@@ -248,6 +249,7 @@ from powercontext.builtin.runtime.recall_sufficiency import (
     build_recall_candidates,
     recall_effort,
 )
+from powercontext.builtin.runtime.source_lifecycle import SourceLifecycleApplication
 from powercontext.builtin.runtime.statistics import RelationalScopedStatistics, overview_selection
 from powercontext.builtin.scope import ScopeApplication, ScopeDescriptor, ScopeSelection
 from powercontext.builtin.scope.subject_sources import SubjectSourceService
@@ -2977,6 +2979,7 @@ class BuiltinRuntime:
         *,
         provider: PowerContextProvider[BuiltinSources, BuiltinArtifacts, BuiltinTriggers],
         capabilities: RuntimeCapabilities,
+        lifecycle_repository: SourceLifecycleRepository | None = None,
         code_service: CodeService | None = None,
         source_window_limit: int = 100,
         context_assembly_max_entries: int = 8,
@@ -3109,6 +3112,7 @@ class BuiltinRuntime:
         self.handoff = HandoffApplication(self)
         self.work = WorkApplication(self)
         self.memory = MemoryApplication(self)
+        self.lifecycle = SourceLifecycleApplication(self, lifecycle_repository)
         self.topic_memory = TopicMemoryApplication(self)
         self.records = RecordApplication(self)
         self.prompts = PromptApplication(self)
