@@ -157,6 +157,69 @@ def _profile(tmp_path, name):
     )
 
 
+def test_count_admission_retries_accepted_work_after_condition_changes(tmp_path):
+    async def scenario():
+        async with _profile(tmp_path, "count-retry") as profile:
+            eligible = {"scope"}
+            attempted = asyncio.Event()
+
+            async def count_ready(connection, scopes):
+                return frozenset(eligible.intersection(scopes))
+
+            async def fail_once(work):
+                if not attempted.is_set():
+                    # Once accepted, failure must keep retrying even when the
+                    # original admission condition no longer holds.
+                    eligible.clear()
+                    attempted.set()
+                    raise RuntimeError("controlled count invocation failure")  # noqa: TRY003
+                return None
+
+            launcher = _Launcher(profile.database, on_work=fail_once)
+            await _request(profile.database, "memory-binding", "scope", requested=False)
+            async with ArtifactProcessingSupervisor(
+                database=profile.database,
+                bindings=(
+                    ArtifactProcessingBinding("memory-binding", "memory", launcher, count_scope_filter=count_ready),
+                ),
+                lease_mode="single-process",
+                retry_base_seconds=0.01,
+                retry_jitter=lambda: 1.0,
+            ) as supervisor:
+                await _wait(lambda: supervisor.family_status["memory"]["completed"] == 1)
+                row = await _intent(profile.database, "memory-binding", "scope")
+                assert row.requested_generation == row.handled_generation == 1
+                assert len(launcher.assignments) == 2
+                assert {work.claimed_request_generation for work in launcher.assignments} == {1}
+
+    asyncio.run(scenario())
+
+
+def test_count_admission_pages_past_scopes_below_threshold(tmp_path):
+    async def scenario():
+        async with _profile(tmp_path, "count-pages") as profile:
+            for index in range(120):
+                await _request(profile.database, "memory-binding", f"below-{index}", requested=False)
+            await _request(profile.database, "memory-binding", "ready", requested=False)
+
+            async def count_ready(connection, scopes):
+                return frozenset(scope for scope in scopes if scope == "ready")
+
+            launcher = _Launcher(profile.database)
+            async with ArtifactProcessingSupervisor(
+                database=profile.database,
+                bindings=(
+                    ArtifactProcessingBinding("memory-binding", "memory", launcher, count_scope_filter=count_ready),
+                ),
+                lease_mode="single-process",
+            ) as supervisor:
+                await _wait(lambda: supervisor.family_status["memory"]["completed"] == 1)
+                assert [work.scope_id for work in launcher.assignments] == ["ready"]
+                assert (await _intent(profile.database, "memory-binding", "below-0")).requested_generation == 0
+
+    asyncio.run(scenario())
+
+
 def test_each_family_has_independent_capacity_and_a_scope_is_single_flight(tmp_path):
     async def scenario():
         async with _profile(tmp_path, "family-capacity") as profile:

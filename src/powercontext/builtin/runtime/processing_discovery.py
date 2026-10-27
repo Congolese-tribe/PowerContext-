@@ -23,7 +23,7 @@ from powercontext.builtin.persistence.cursors import SourceCursorRepository
 from powercontext.builtin.persistence.database import AsyncDatabase
 from powercontext.builtin.persistence.processing_intents import ArtifactProcessingIntentRepository
 from powercontext.builtin.persistence.supervision import ArtifactProcessingFence, ArtifactProcessingLeaseRepository
-from powercontext.builtin.persistence.tables import PROFILE_POLICIES_TABLE, SOURCE_JOURNAL_HEADS_TABLE
+from powercontext.builtin.persistence.tables import PROFILE_POLICIES_TABLE, SOURCE_JOURNAL_HEADS_TABLE, SOURCES_TABLE
 
 
 async def enabled_profile_scopes(connection: AsyncConnection, scope_ids: tuple[str, ...]) -> frozenset[str]:
@@ -52,6 +52,36 @@ class SourceProcessingPendingProvider:
         self._database = database
         self._binding = binding_name
         self._family = artifact_family
+
+    async def count_ready(
+        self, connection: AsyncConnection, scope_ids: tuple[str, ...], *, threshold: int
+    ) -> frozenset[str]:
+        """Check persisted identities after each successful cursor without loading bodies.
+
+        The head check avoids walking a short journal for an arbitrarily large
+        threshold. The indexed probe stops at the threshold and counts actual
+        identities even if journal positions have gaps.
+        """
+
+        cursors = await SourceCursorRepository().load_many(connection, scope_ids, self._binding)
+        heads = SOURCE_JOURNAL_HEADS_TABLE
+        rows = await connection.execute(select(heads).where(heads.c.scope_id.in_(scope_ids)))
+        ready: set[str] = set()
+        for scope, high in rows:
+            cursor = cursors.get(scope)
+            after = 0 if cursor is None else cursor.cursor.sequence
+            if int(high) - after < threshold:
+                continue
+            position = await connection.scalar(
+                select(SOURCES_TABLE.c.journal_position)
+                .where(SOURCES_TABLE.c.scope_id == scope, SOURCES_TABLE.c.journal_position > after)
+                .order_by(SOURCES_TABLE.c.journal_position)
+                .offset(threshold - 1)
+                .limit(1)
+            )
+            if position is not None:
+                ready.add(scope)
+        return frozenset(ready)
 
     async def reconcile(self, after_scope_id: str | None, limit: int, *, fence: ArtifactProcessingFence) -> str | None:
         heads = SOURCE_JOURNAL_HEADS_TABLE
