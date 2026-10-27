@@ -19,6 +19,7 @@ from __future__ import annotations
 import base64
 import hashlib
 import json
+import re
 import struct
 import zlib
 from contextlib import contextmanager
@@ -173,6 +174,8 @@ async def _filtered_candidates(contexts, model):
             with _candidates() as calls:
                 channels = await index.search(connection, "filtered-scope", request)
             assert len(calls) == 1
+            if not channels.vector:
+                await _diagnose_tagged_vectors(connection, *calls[0])
             assert 0 < len(channels.fts) <= limit and 0 < len(channels.vector) <= limit
             allowed = {entries[texts[2]].entry_id} if match == "all" else {entry.entry_id for entry in entries.values()}
             for hit in (*channels.fts, *channels.vector):
@@ -181,6 +184,40 @@ async def _filtered_candidates(contexts, model):
                 str(row[0]) for row in (await connection.exec_driver_sql("EXPLAIN " + calls[0][0], calls[0][1])).all()
             )
             assert "TEXT RETRIEVAL SCAN" in plan and "VECTOR INDEX" in plan
+
+
+async def _diagnose_tagged_vectors(connection, statement, parameters):
+    """Keep native plan evidence when a highly selective filter loses candidates."""
+    membership = """AND (m.scope_id, m.memory_artifact_id, m.entry_id) IN (
+        SELECT tags.scope_id, tags.artifact_id, tags.target_id FROM pc_artifact_tags AS tags
+        WHERE tags.family = 'memory' AND tags.target_type = 'memory_entry'
+          AND tags.tag_key_hash IN (%s, %s) AND tags.tag_key IN (%s, %s)
+        GROUP BY tags.scope_id, tags.artifact_id, tags.target_id HAVING COUNT(*) >= %s
+    )"""
+    for shape in ("correlated", "membership"):
+        sql = (
+            statement
+            if shape == "correlated"
+            else re.sub(
+                r"AND \(SELECT COUNT\(\*\) FROM pc_artifact_tags AS tags.*?\) >= %s",
+                membership,
+                statement,
+                flags=re.DOTALL,
+            )
+        )
+        for hint in (
+            "",
+            "/*+ VECTOR_INDEX(m ix_pc_memory_vector_entries_embedding pre_filter) */",
+            "/*+ INDEX(m ix_pc_memory_vector_entries_embedding) */",
+        ):
+            position = sql.rfind("SELECT", 0, sql.index("FROM pc_memory_vector_entries AS m")) + len("SELECT")
+            trial = sql[:position] + " " + hint + sql[position:]
+            rows = (await connection.exec_driver_sql(trial, parameters)).mappings().all()
+            plan = "\n".join(
+                str(row[0]) for row in (await connection.exec_driver_sql("EXPLAIN " + trial, parameters)).all()
+            )
+            print("TAGGED_VECTOR_DIAGNOSTIC", shape, hint, "rows", sum(row["channel"] == "vector" for row in rows))
+            print(plan)
 
 
 @pytest.mark.asyncio
