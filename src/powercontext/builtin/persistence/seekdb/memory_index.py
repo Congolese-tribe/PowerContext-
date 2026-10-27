@@ -58,16 +58,16 @@ FROM (
            n.entry_id, n.entry_version_id, n.text,
            n.distance, n.distance AS sort_key
     FROM (
-        SELECT m.memory_artifact_id, m.head_revision, m.entry_id, m.entry_version_id,
+        SELECT {vector_hint} m.memory_artifact_id, m.head_revision, m.entry_id, m.entry_version_id,
                v.text, l2_distance(m.embedding, :query_vector) AS distance
-        FROM pc_memory_vector_entries AS m
+        FROM {vector_source}
         JOIN pc_memory_entry_versions AS v
           ON v.scope_id = m.scope_id
          AND v.memory_artifact_id = m.memory_artifact_id
          AND v.entry_version_id = m.entry_version_id
         WHERE m.scope_id = :scope_id
           AND m.memory_artifact_id IN :memory_artifact_ids
-          {tag_predicate}
+          {vector_tag_predicate}
         ORDER BY l2_distance(m.embedding, :query_vector) APPROXIMATE
         LIMIT :candidate_limit
     ) AS n
@@ -75,6 +75,19 @@ FROM (
 ORDER BY candidates.channel, candidates.sort_key,
          candidates.memory_artifact_id, candidates.entry_id, candidates.entry_version_id
 """
+
+_TAGGED_VECTOR_SOURCE = """(
+    SELECT tags.artifact_id, tags.target_id
+    FROM pc_artifact_tags AS tags
+    WHERE tags.scope_id = :scope_id
+      AND tags.artifact_id IN :memory_artifact_ids
+      AND tags.family = 'memory' AND tags.target_type = 'memory_entry'
+      AND tags.tag_key_hash IN :tag_hashes AND tags.tag_key IN :tag_keys
+    GROUP BY tags.artifact_id, tags.target_id
+    HAVING COUNT(*) >= :tag_minimum
+) AS selected
+JOIN pc_memory_vector_entries AS m
+  ON m.memory_artifact_id = selected.artifact_id AND m.entry_id = selected.target_id"""
 
 
 class SeekDBMemoryIndex(CompositeMemoryIndex):
@@ -87,10 +100,19 @@ class SeekDBMemoryIndex(CompositeMemoryIndex):
             bindparam("memory_artifact_ids", expanding=True),
             bindparam("query_vector", type_=VECTOR(profile.dimension)),
         )
-        self._hybrid = text(_HYBRID_SQL.format(tag_predicate="")).bindparams(*parameters)
-        self._tagged_hybrid = text(_HYBRID_SQL.format(tag_predicate=memory_tag_sql("m"))).bindparams(
-            *parameters, bindparam("tag_keys", expanding=True), bindparam("tag_hashes", expanding=True)
-        )
+        self._hybrid = text(
+            _HYBRID_SQL.format(
+                tag_predicate="", vector_source="pc_memory_vector_entries AS m", vector_tag_predicate="", vector_hint=""
+            )
+        ).bindparams(*parameters)
+        self._tagged_hybrid = text(
+            _HYBRID_SQL.format(
+                tag_predicate=memory_tag_sql("m"),
+                vector_source=_TAGGED_VECTOR_SOURCE,
+                vector_tag_predicate="",
+                vector_hint="/*+ LEADING(selected m v) USE_NL(m) INDEX(m ix_pc_memory_vector_entries_embedding) */",
+            )
+        ).bindparams(*parameters, bindparam("tag_keys", expanding=True), bindparam("tag_hashes", expanding=True))
 
     @override
     async def search(
