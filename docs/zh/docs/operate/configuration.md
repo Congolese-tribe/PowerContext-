@@ -82,7 +82,7 @@ Server 配置使用 `POWERCONTEXT_SERVER_` 前缀。
 | `POWERCONTEXT_SERVER_RUNTIME_RECALL_GATE_ROUND2_MIN_SEMANTIC_SIMILARITY` | `0.10` | 第二轮追加搜索使用的语义相似度准入下限；启用时不得高于第一轮的值 |
 | `POWERCONTEXT_SERVER_RUNTIME_RECALL_GATE_ALLOW_WITH_RERANK` | `false` | 已启用 `MEMORY_RERANK_ENABLED` 时是否仍允许追加搜索；默认在 rerank 之后不再追加 |
 | `POWERCONTEXT_SERVER_RUNTIME_MEMORY_SCHEDULE_SECONDS` | 未设置 | Memory 自动准入间隔；`SCHEDULE_SECONDS` 保留为兼容别名 |
-| `POWERCONTEXT_SERVER_RUNTIME_TOPIC_MEMORY_SCHEDULE_SECONDS` | 未设置 | Topic Memory 自动准入间隔；未设置时不接纳新的自动调用 |
+| `POWERCONTEXT_SERVER_RUNTIME_TOPIC_MEMORY_SCHEDULE_SECONDS` | 未设置 | Topic Memory 自动准入间隔；数量准入独立配置 |
 | `POWERCONTEXT_SERVER_RUNTIME_TOPIC_MEMORY_SOURCE_WINDOW_LIMIT` | `10` | 每个 Topic Memory Window 的 Source 数量上限，硬上限为 100；一次 Scope 调用可完成多个 Window |
 | `POWERCONTEXT_SERVER_RUNTIME_TOPIC_MEMORY_HISTORY_MAX_CANDIDATES` | `20` | 处理时考虑的历史 Topic 候选上限 |
 | `POWERCONTEXT_SERVER_RUNTIME_TOPIC_MEMORY_HISTORY_RRF_THRESHOLD` | `70` | 归一化到 `0..100` 的 RRF 接受阈值 |
@@ -264,14 +264,30 @@ Handoff Report API route 独立默认启用。Selection、检查和导出步骤�
 
 默认 `all` 角色会启动 Artifact Processing Supervisor。OceanBase 部署可以拆分 `api` 和 `background`；
 `powercontext server run --role background` 不启动 HTTP、MCP 或 Dashboard listener，多个后台候选者通过数据库 Lease
-自动选出一个 active Leader。SQLite 与嵌入式 seekdb 只支持单进程 `all`。未设置正数间隔时，Topic Memory 自动波次
-保持关闭；显式 flush 工作的恢复不依赖该间隔。Topic Worker 要求使用文件 SQLite；内存 SQLite 配合 generation
+自动选出一个 active Leader。SQLite 与嵌入式 seekdb 只支持单进程 `all`。Topic Memory 自动波次需要配置正数间隔或 Source 数量门槛；
+显式 flush 工作的恢复不依赖这些条件。Topic Worker 要求使用文件 SQLite；内存 SQLite 配合 generation
 model 的配置会在声明处理能力之前被拒绝。请通过 `POWERCONTEXT_SERVER_DATABASE_URL` 指定持久数据库路径，例如
 `sqlite+aiosqlite:////srv/powercontext/runtime.db`。Memory、Topic Memory、Experience、Profile 均使用统一 Supervisor，OceanBase 拆分角色也可启用其周期。
 SQLite 和 embedded seekdb 仍要求单宿主 `all`。两模式均保留逐 Family 独立额度和总超时，不借用其他 Family 空闲额度。
 关闭自动准入仍恢复已接受请求。API 与后台须保持 mode、注册 Family 和可触发能力一致；模型仅在执行端必需。
 切换模式须[协调停机迁移](artifact-processing-migration.md)，不能混用模式启动。
 显式同时配置的新旧别名值不同时拒绝启动，同值接受。
+
+`RuntimeConfig.memory_source_count_threshold` 和 `RuntimeConfig.topic_memory_source_count_threshold` 分别控制
+Memory 与 Topic Memory 按待处理 Source 数量自动准入。两者默认均为 `None`，表示关闭数量触发；非空值只接受严格正整数，
+拒绝布尔值、字符串、浮点数、零和负数。例如：
+
+```python
+RuntimeConfig(memory_source_count_threshold=3, source_window_limit=1)
+```
+
+每个 Scope、每个 Family 独立计算最后一次成功提交的 Source cursor 之后的持久化 journal 身份数，首次从 cursor 0 开始。
+重复 capture 和 receipt 信任升级不增加身份数。只用于 lineage 的 Source 参与启动计数，但仍从生成证据中排除。
+数量条件与时间条件为 OR，任一满足即可启动；显式 `memory.for_scope(scope_id).flush()` 和
+`topic_memory.for_scope(scope_id).flush()` 绕过这些启动条件。
+Memory 每次只处理一个窗口，成功后重新判断剩余数量：上述配置收到 3 条 Source 后处理 1 条，剩余 2 条等待新增输入、
+时间条件或显式 flush。Topic Memory 已接受的 wave 按原有窗口上限继续完成，不对后续窗口重复施加数量门槛。
+待处理输入与已接受请求在重启后保留；失败不推进成功 cursor，已接受工作即使随后关闭数量触发也继续按原有机制重试。
 
 普通 Runtime 启动会初始化并恢复所配置的检索索引。Topic Worker 复用该数据库，不再为每个 Window 重建无关的
 Memory/Experience 检索投影；Topic 索引校验与发布守卫仍然执行。如果空库切换了 Topic 检索形态或 Embedding
@@ -332,7 +348,7 @@ capability error；Review、package 检查与下载、精确导入、usage recor
 Experience 孵化使用独立的 Supervisor binding 和持久化 Source cursor。每次调用按 `SOURCE_WINDOW_LIMIT` 检查有限 Source 窗口，只把 metadata 包含 `"kind": "task-outcome"` 的 Content Source
 暴露给模型。该 job 会在 Review Inbox 中创建 pending Experience Candidate；它不会自动批准、进入
 PreparedContext、创建 managed Skill、将它导出到 Agent target 或执行任何内容。Memory 与 Experience 保持独立的周期、
-Worker 额度和业务 Cursor；关闭某一间隔仅停止该 Family 的新自动准入，保留已接受工作。
+Worker 额度和业务 Cursor；关闭某一间隔仅停止该 Family 的时间准入，保留已接受工作，Memory 数量准入仍独立生效。
 设置与验证步骤见[创建并审核 Experience](../workflows/create-and-review-experience.md)。
 
 ### Agent Skill 目标
