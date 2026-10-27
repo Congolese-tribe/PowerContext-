@@ -25,6 +25,45 @@ FTS 的候选检索和准入使用相同的查询词。查询归一化会排除�
 直接搜索和上下文准备使用相同规则，可选的 recall gate 放宽门槛时也如此。存储文本和向量查询保持不变，
 词语重合本身不能证明语义相关。
 
+## 撤回与恢复支持来源
+
+内置 Python Runtime 通过 `runtime.lifecycle.for_scope(scope_id)` 接收显式证据依赖。
+按父节点优先的顺序注册已采集的 Source、可读取的 Memory citation 和精确的 Topic Memory 引用：
+
+```python
+from powercontext.builtin.runtime.source_lifecycle import SourceLifecycleEvent
+
+lifecycle = runtime.lifecycle.for_scope(scope_id)
+await lifecycle.register_source("source-a", source_ref, revision=3)
+await lifecycle.register_memory("fact-a", citation, parents=("source-a",), policy="all")
+await lifecycle.register_topic("topic-a", topic_ref, parents=("fact-a",), policy="any")
+
+active_ids = await lifecycle.apply(SourceLifecycleEvent(
+    node_id="source-a", revision=3, sequence=1, available=False, reason="来源撤回"
+))
+historical = await lifecycle.resolve("fact-a", purpose="audit")
+await lifecycle.apply(SourceLifecycleEvent(
+    node_id="source-a", revision=3, sequence=2, available=True, reason="来源恢复"
+))
+original = await lifecycle.resolve("fact-a", purpose="generation")
+```
+
+每个节点的整份正文使用一个支持规则：`all` 要求全部父节点可用，`any` 要求至少一个父节点能够独立支持整份正文。
+状态沿 Memory 和 Topic 节点逐层传播。注册时立即按当前支持计算状态，父节点已经撤回时同样生效。
+失去支持的 Memory 条目变为非活跃，Topic 修订退出原生搜索和 PreparedContext。
+审计读取仍可精确读取历史正文，恢复后返回原始注册引用，不创建新的正文版本。
+
+绑定注册后不可修改，节点编号在 Scope 内唯一。相同注册幂等；不同绑定、缺失或重复父节点以及环会抛出
+`SourceLifecycleError`。每个 Scope 使用单写者，绑定期间不要改写已注册 Memory 的正文。
+Source 的正整数生命周期 `revision` 独立于 Artifact 修订；每个 Source 的正整数 `sequence` 必须递增，
+包含 `reason` 在内完全相同的事件可以幂等重放。未知节点、过期事件、版本不匹配和未知用途均抛出
+`SourceLifecycleError`。
+
+注册、事件意图和目标状态保存在 Runtime 数据库中。原生 Memory 状态写入失败后，可重试完全相同的事件，
+也可重启 Runtime 后重试。重试会补齐未完成的状态变更；已完成的变更和成功事件重放不会新增 Memory 修订。
+传播通过多个可恢复的原生写入完成，中断后原生视图可能部分更新，重试后恢复一致。
+已有数据库会在启动时创建生命周期表；未注册内容保持原有行为。此接口由内置 Python Runtime 提供。
+
 ## 自动上下文与提取
 
 召回 Hook 向 Server 请求有大小上限的 PreparedContext。没有相关信息时返回 `empty` 是正常结果。

@@ -895,7 +895,23 @@ RECALL_TOKEN_DAILY_TABLE = Table(
     CheckConstraint("recalled_tokens >= 0", name="ck_pc_recall_token_daily_recalled_nonnegative"),
 )
 
+SOURCE_LIFECYCLE_NODES_TABLE = Table(
+    "pc_source_lifecycle_nodes",
+    SHARED_METADATA,
+    Column("scope_id", identity_string(MAX_SCOPE_ID_LENGTH), primary_key=True),
+    Column("node_id", _entry_text_type(), nullable=False),
+    Column("node_key", LargeBinary(32).with_variant(BINARY(32), "mysql"), primary_key=True),
+    Column("available", Boolean, nullable=False),
+    Column("topic_artifact_id", identity_string(MAX_ARTIFACT_ID_LENGTH)),
+    Column("topic_revision", Integer),
+    Column("payload", _canonical_payload_type(), nullable=False),
+    ForeignKeyConstraint(("scope_id",), ("pc_scopes.scope_id",), ondelete="CASCADE"),
+    Index("ix_pc_source_lifecycle_topic", "scope_id", "topic_artifact_id", "topic_revision", "available"),
+)
+
+
 SHARED_TABLES = (
+    SOURCE_LIFECYCLE_NODES_TABLE,
     SOURCE_JOURNAL_HEADS_TABLE,
     SOURCES_TABLE,
     ARTIFACTS_TABLE,
