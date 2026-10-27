@@ -86,7 +86,7 @@ Server settings use the `POWERCONTEXT_SERVER_` prefix.
 | `POWERCONTEXT_SERVER_RUNTIME_RECALL_GATE_ROUND2_MIN_SEMANTIC_SIMILARITY` | `0.10` | Semantic-similarity admission floor for the second expansion round; must not exceed the first round's value |
 | `POWERCONTEXT_SERVER_RUNTIME_RECALL_GATE_ALLOW_WITH_RERANK` | `false` | Whether expansion may still run when `MEMORY_RERANK_ENABLED` is set; by default reranking ends the expansion |
 | `POWERCONTEXT_SERVER_RUNTIME_MEMORY_SCHEDULE_SECONDS` | unset | Memory automatic admission interval; `SCHEDULE_SECONDS` remains a compatibility alias |
-| `POWERCONTEXT_SERVER_RUNTIME_TOPIC_MEMORY_SCHEDULE_SECONDS` | unset | Topic Memory automatic admission interval; unset disables new automatic admission |
+| `POWERCONTEXT_SERVER_RUNTIME_TOPIC_MEMORY_SCHEDULE_SECONDS` | unset | Topic Memory automatic admission interval; count admission is configured independently |
 | `POWERCONTEXT_SERVER_RUNTIME_TOPIC_MEMORY_SOURCE_WINDOW_LIMIT` | `10` | Maximum Sources per Topic Memory Window, capped at 100; one Scope invocation can finish several Windows |
 | `POWERCONTEXT_SERVER_RUNTIME_TOPIC_MEMORY_HISTORY_MAX_CANDIDATES` | `20` | Maximum historical Topic candidates considered while processing |
 | `POWERCONTEXT_SERVER_RUNTIME_TOPIC_MEMORY_HISTORY_RRF_THRESHOLD` | `70` | RRF acceptance threshold normalized to `0..100` |
@@ -295,8 +295,8 @@ Handoff Report API routes are independently enabled by default. See
 The Artifact Processing Supervisor is enabled by the default `all` role. OceanBase deployments may run `api` and
 `background` separately; `powercontext server run --role background` starts no HTTP, MCP, or Dashboard listener, and
 multiple background candidates use the database Lease to elect one active Leader. SQLite and embedded seekdb support
-only the single-process `all` role. Automatic Topic Memory waves remain disabled until a positive interval is set;
-explicit flush work remains recoverable regardless of that interval. Topic workers need file-backed SQLite: configuring
+only the single-process `all` role. Automatic Topic Memory waves require a positive interval or a Source count threshold;
+explicit flush work remains recoverable regardless of these conditions. Topic workers need file-backed SQLite: configuring
 a generation model with an in-memory SQLite database is rejected before processing is advertised. Use a persistent
 `POWERCONTEXT_SERVER_DATABASE_URL`, such as `sqlite+aiosqlite:////srv/powercontext/runtime.db`.
 Memory, Topic Memory, Experience, and Profile all use the Supervisor. OceanBase permits their schedules in split roles.
@@ -305,6 +305,24 @@ is not shared. Disabling automatic admission preserves already accepted requests
 agree on mode, registered Families and trigger capabilities. Model resources are only required by workers. Changing modes
 requires [coordinated offline migration](artifact-processing-migration.md); mixed modes cannot start.
 Conflicting explicit old/new configuration aliases fail startup; equal values are accepted.
+
+`RuntimeConfig.memory_source_count_threshold` and `RuntimeConfig.topic_memory_source_count_threshold` independently
+enable automatic admission by pending Source count. Both default to `None` (disabled) and accept only positive integers;
+booleans, strings, floats, zero, and negative values are rejected. For example:
+
+```python
+RuntimeConfig(memory_source_count_threshold=3, source_window_limit=1)
+```
+
+Each Scope and Family counts persisted journal identities after its last successfully committed Source cursor,
+starting at cursor zero. Duplicate capture and receipt trust upgrades do not add identities. Lineage-only Sources
+count toward admission but remain excluded from generation evidence. Count and time conditions are OR conditions;
+explicit `memory.for_scope(scope_id).flush()` and `topic_memory.for_scope(scope_id).flush()` bypass both.
+Memory processes one bounded window and checks the remaining count again: with the example above, three Sources
+trigger one Source, leaving two pending until another Source, a time condition, or flush. Topic Memory completes
+the accepted wave using its existing window limit, without applying the threshold to subsequent windows.
+Pending input and accepted requests survive restart; failures retain the successful cursor and retry the accepted work
+even if count admission is later disabled.
 
 Normal Runtime startup initializes and recovers the configured search indexes. Topic Workers reuse that database
 without rebuilding the unrelated Memory/Experience search projections for each Window; Topic index validation and
@@ -363,7 +381,7 @@ finite window controlled by `SOURCE_WINDOW_LIMIT` and exposes only Content Sourc
 `"kind": "task-outcome"` to the model. It creates pending Experience Candidates in the Review Inbox; it does not
 approve them, place them in PreparedContext, create a managed Skill, export it to an Agent target, or execute anything.
 Memory and Experience keep independent scheduling intervals, Worker quotas, and business cursors. Unsetting an interval
-stops new automatic admission for that Family while preserving accepted work.
+stops time admission for that Family while preserving accepted work; Memory count admission remains independent.
 See [Create and review an Experience](../workflows/create-and-review-experience.md) for setup and verification steps.
 
 ### Agent Skill targets
