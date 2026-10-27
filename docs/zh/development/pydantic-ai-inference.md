@@ -158,6 +158,33 @@ sqlite-vec index。向量进入持久化之前，adapter 会校验输出数量�
 `EmbeddingProfile` 是 deployment contract，不是描述性 metadata。持久化 projection 和 query embedding 必须使用
 同一个 profile。model、dimension 或 normalization 发生变化后，应从权威 Memory revision 重建 projection。
 
+## 合并 embedding 请求与缓存向量
+
+为已有的 `EmbeddingModel` 创建一个包装器，并将同一个实例传给 runtime：
+
+```python
+from powercontext.builtin.inference.coalescing import CoalescingEmbeddingModel
+
+embedding_model = CoalescingEmbeddingModel(
+    embedding_model,
+    max_batch_size=64,
+    coalesce_ms=5.0,
+    cache_size=1024,
+)
+```
+
+包装器暴露底层模型的 profile，可通过 `open_builtin_contexts(..., embedding_model=embedding_model)` 接入。
+同一事件循环中的调用共享排队或执行中的相同文本。每个底层批次最多包含 `max_batch_size` 条去重文本；
+合并窗口为零时，在事件循环的下一轮调度发送。返回向量保留各调用的原始顺序和重复位置，空输入不请求底层模型。
+
+成功向量写入有界 LRU 缓存，命中时刷新最近使用顺序。`cache_size=0` 关闭完成后的跨调用复用，仍共享执行中的请求。
+失败与向量数量不匹配的结果不缓存，独立批次继续执行。取消调用不会取消共享计算；即使所有等待者均已取消，
+计算仍会继续，成功结果仍可进入缓存。底层模型的生命周期仍由应用管理。
+
+每个调用对自己等待的不同底层批次各汇总一次完整的 request 和 token 用量，共享批次可分别计入各等待者。
+纯缓存命中的 requests 为零；任一等待批次未提供某项 token 用量时，该项总量保持 `None`。
+支持 `embed_query` 的底层模型分别合并和缓存文档、查询向量，两类条目共用容量上限；不区分查询的模型复用文档向量。
+
 ## 失败行为
 
 generation 和 embedding failure 会将 provider error 映射为 PowerContext inference error。timeout 和临时 provider

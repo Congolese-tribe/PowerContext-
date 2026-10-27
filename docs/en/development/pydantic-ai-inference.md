@@ -166,6 +166,36 @@ An `EmbeddingProfile` is a deployment contract, not descriptive metadata. Stored
 must use the same profile. When the model, dimension, or normalization changes, rebuild Memory projections from the
 authoritative revisions.
 
+## Share embedding work and cache vectors
+
+Wrap an existing `EmbeddingModel` once and pass the shared wrapper to the runtime:
+
+```python
+from powercontext.builtin.inference.coalescing import CoalescingEmbeddingModel
+
+embedding_model = CoalescingEmbeddingModel(
+    embedding_model,
+    max_batch_size=64,
+    coalesce_ms=5.0,
+    cache_size=1024,
+)
+```
+
+The wrapper exposes the delegate's profile and works with `open_builtin_contexts(..., embedding_model=embedding_model)`.
+Calls on the same event loop share identical queued and in-flight texts. Each provider batch contains at most
+`max_batch_size` distinct texts. A zero window schedules dispatch on the next event-loop turn. Vectors return in each
+caller's original order, including duplicate positions, and empty inputs issue no provider requests.
+
+Successful vectors enter a bounded LRU cache; hits refresh recency. `cache_size=0` disables reuse after completion
+while retaining in-flight sharing. Failures and vector-count mismatches are not cached, and independent batches
+continue. Cancelling a caller leaves shared provider work running, even when all callers have cancelled; successful
+results can still populate the cache. The application retains ownership of the delegate's lifecycle.
+
+Each caller's usage includes the full provider request and token counts once per distinct batch it awaited, even if
+other callers share that batch. Cache-only calls report zero requests. A token total remains `None` if any awaited
+batch omits that field. Query-aware delegates retain separate document/query work and cache entries under the same
+capacity; delegates without `embed_query` reuse document vectors for queries.
+
 ## Failure behavior
 
 Generation and embedding failures map provider errors into PowerContext inference errors. Timeouts and temporary
