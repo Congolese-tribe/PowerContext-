@@ -1,0 +1,667 @@
+{
+  "source": "SciFact official public release, claims_dev.jsonl",
+  "archive_sha256": "11c621288d41ac144d29b13b0f8503b3820b7d6e8b1f6ff24dff335c196d76be",
+  "selection": "First 24 evidence-bearing dev claims in original order whose complete union of gold spans fits 1400 UTF-8 wire bytes, with lexical-overlap distractors and deterministic shuffled candidate order.",
+  "cases": [
+    {
+      "id": "5",
+      "query": "1/2000 in UK have abnormal PrP positivity.",
+      "documents": [
+        {
+          "id": "13734012",
+          "text": "Prevalent abnormal prion protein in human appendixes after bovine spongiform encephalopathy epizootic: large scale survey OBJECTIVES To carry out a further survey of archived appendix samples to understand better the differences between existing estimates of the prevalence of subclinical infection with prions after the bovine spongiform encephalopathy epizootic and to see whether a broader birth cohort was affected, and to understand better the implications for the management of blood and blood products and for the handling of surgical instruments.   \n DESIGN Irreversibly unlinked and anonymised large scale survey of archived appendix samples.   \n SETTING Archived appendix samples from the pathology departments of 41 UK hospitals participating in the earlier survey, and additional hospitals in regions with lower levels of participation in that survey.    SAMPLE 32,441 archived appendix samples fixed in formalin and embedded in paraffin and tested for the presence of abnormal prion protein (PrP).   \n RESULTS Of the 32,441 appendix samples 16 were positive for abnormal PrP, indicating an overall prevalence of 493 per million population (95% confidence interval 282 to 801 per million). The prevalence in those born in 1941-60 (733 per million, 269 to 1596 per million) did not differ significantly from those born between 1961 and 1985 (412 per million, 198 to 758 per million) and was similar in both sexes and across the three broad geographical areas sampled. Genetic testing of the positive specimens for the genotype at PRNP codon 129 revealed a high proportion that were valine homozygous compared with the frequency in the normal population, and in stark contrast with confirmed clinical cases of vCJD, all of which were methionine homozygous at PRNP codon 129.   \n CONCLUSIONS This study corroborates previous studies and suggests a high prevalence of infection with abnormal PrP, indicating vCJD carrier status in the population compared with the 177 vCJD cases to date. These findings have important implications for the management of blood and blood products and for the handling of surgical instruments."
+        },
+        {
+          "id": "23531592",
+          "text": "Paediatric HIV infection. By the year 2000 there will be six million pregnant women and five to ten million children infected with HIV-1. Intervention strategies have been planned and in some instances already started. A timely and cost-effective strategy needs to take into account that most HIV-1 infected individuals reside in developing countries. Further studies are needed on immunological and virological factors affecting HIV-1 transmission from mother to child, on differential disease progression in affected children, and on transient infection."
+        },
+        {
+          "id": "18617259",
+          "text": "Research Letters We report a case of preclinical variant Creutzfeldt-Jakob disease (vCJD) in a patient who died from a non-neurological disorder 5 years after receiving a blood transfusion from a donor who subsequently developed vCJD. Protease-resistant prion protein (PrP(res)) was detected by western blot, paraffin-embedded tissue blot, and immunohistochemistry in the spleen, but not in the brain. Immunohistochemistry for prion protein was also positive in a cervical lymph node. The patient was a heterozygote at codon 129 of PRNP, suggesting that susceptibility to vCJD infection is not confined to the methionine homozygous PRNP genotype. These findings have major implications for future estimates and surveillance of vCJD in the UK."
+        }
+      ],
+      "gold": {
+        "13734012": [
+          [
+            1015,
+            1201
+          ]
+        ]
+      },
+      "gold_wire_bytes": 839
+    },
+    {
+      "id": "48",
+      "query": "A total of 1,000 people in the UK are asymptomatic carriers of vCJD infection.",
+      "documents": [
+        {
+          "id": "32850528",
+          "text": "Amylase, Lipase, and Acute Pancreatitis in People With Type 2 Diabetes Treated With Liraglutide: Results From the LEADER Randomized Trial. OBJECTIVE To evaluate serum amylase and lipase levels and the rate of acute pancreatitis in patients with type 2 diabetes and high cardiovascular risk randomized to liraglutide or placebo and observed for 3.5-5.0 years.    RESEARCH DESIGN AND METHODS A total of 9,340 patients with type 2 diabetes were randomized to either liraglutide or placebo (median observation time 3.84 years). Fasting serum lipase and amylase were monitored. Acute pancreatitis was adjudicated in a blinded manner.   \n RESULTS Compared with the placebo group, liraglutide-treated patients had increases in serum lipase and amylase of 28.0% and 7.0%, respectively. Levels were increased at 6 months and then remained stable. During the study, 18 (0.4% [1.1 events/1,000 patient-years of observation] [PYO]) liraglutide-treated and 23 (0.5% [1.7 events/1,000 PYO]) placebo patients had acute pancreatitis confirmed by adjudication. Most acute pancreatitis cases occurred ≥12 months after randomization. Liraglutide-treated patients with prior history of pancreatitis (n = 147) were not more likely to develop acute pancreatitis than similar patients in the placebo group (n = 120). Elevations of amylase and lipase levels did not predict future risk of acute pancreatitis (positive predictive value <1.0%) in patients treated with liraglutide.   \n CONCLUSIONS In a population with type 2 diabetes at high cardiovascular risk, there were numerically fewer events of acute pancreatitis among liraglutide-treated patients (regardless of previous history of pancreatitis) compared with the placebo group. Liraglutide was associated with increases in serum lipase and amylase, which were not predictive of an event of subsequent acute pancreatitis."
+        },
+        {
+          "id": "17454301",
+          "text": "Epidemiologic studies on Dengue in Santiago de Cuba, 1997. A small, isolated outbreak of dengue hemorrhagic fever/dengue shock syndrome (DHF/DSS) due to dengue virus type 2 (DEN-2) was documented in Santiago de Cuba on the island of Cuba beginning in January 1997. There were 205 DHF/DSS cases, all in persons older than age 15 years. All but three had evidence of a prior dengue infection, with the only known opportunity being the islandwide dengue virus type 1 (DEN-1) epidemic of 1977-1979. Virtually complete clinical and laboratory surveillance of overt disease was achieved. From December 1997 to January 1998, a random, age-stratified serum sample was obtained from 1,151 persons in 40 residential clusters in Santiago. Sera were tested for DEN-1 and DEN-2 neutralizing antibodies. The prevalence of DEN-2 antibodies in children age 15 years and under, born after the 1981 DEN-2 epidemic, was taken as the 1997 DEN-2 infection rate. This was adjusted slightly to accommodate observed cases, resulting in an estimated infection rate of 4.3%. Dengue fever and DHF/DSS attack rates were calculated from estimated total primary and secondary DEN-2 infections. Only 3% of 13,116 primary infections were overt. The DHF/DSS attack rate for adults of all ages was 420 per 10,000 secondary DEN-2 infections."
+        },
+        {
+          "id": "13734012",
+          "text": "Prevalent abnormal prion protein in human appendixes after bovine spongiform encephalopathy epizootic: large scale survey OBJECTIVES To carry out a further survey of archived appendix samples to understand better the differences between existing estimates of the prevalence of subclinical infection with prions after the bovine spongiform encephalopathy epizootic and to see whether a broader birth cohort was affected, and to understand better the implications for the management of blood and blood products and for the handling of surgical instruments.   \n DESIGN Irreversibly unlinked and anonymised large scale survey of archived appendix samples.   \n SETTING Archived appendix samples from the pathology departments of 41 UK hospitals participating in the earlier survey, and additional hospitals in regions with lower levels of participation in that survey.    SAMPLE 32,441 archived appendix samples fixed in formalin and embedded in paraffin and tested for the presence of abnormal prion protein (PrP).   \n RESULTS Of the 32,441 appendix samples 16 were positive for abnormal PrP, indicating an overall prevalence of 493 per million population (95% confidence interval 282 to 801 per million). The prevalence in those born in 1941-60 (733 per million, 269 to 1596 per million) did not differ significantly from those born between 1961 and 1985 (412 per million, 198 to 758 per million) and was similar in both sexes and across the three broad geographical areas sampled. Genetic testing of the positive specimens for the genotype at PRNP codon 129 revealed a high proportion that were valine homozygous compared with the frequency in the normal population, and in stark contrast with confirmed clinical cases of vCJD, all of which were methionine homozygous at PRNP codon 129.   \n CONCLUSIONS This study corroborates previous studies and suggests a high prevalence of infection with abnormal PrP, indicating vCJD carrier status in the population compared with the 177 vCJD cases to date. These findings have important implications for the management of blood and blood products and for the handling of surgical instruments."
+        }
+      ],
+      "gold": {
+        "13734012": [
+          [
+            1015,
+            1201
+          ]
+        ]
+      },
+      "gold_wire_bytes": 839
+    },
+    {
+      "id": "49",
+      "query": "ADAR1 binds to Dicer to cleave pre-miRNA.",
+      "documents": [
+        {
+          "id": "5702790",
+          "text": "Phosphate and R2D2 restrict the substrate specificity of Dicer-2, an ATP-driven ribonuclease. Drosophila Dicer-2 generates small interfering RNAs (siRNAs) from long double-stranded RNA (dsRNA), whereas Dicer-1 produces microRNAs (miRNAs) from pre-miRNA. What makes the two Dicers specific for their biological substrates? We find that purified Dicer-2 can efficiently cleave pre-miRNA, but that inorganic phosphate and the Dicer-2 partner protein R2D2 inhibit pre-miRNA cleavage. Dicer-2 contains C-terminal RNase III domains that mediate RNA cleavage and an N-terminal helicase motif, whose function is unclear. We show that Dicer-2 is a dsRNA-stimulated ATPase that hydrolyzes ATP to ADP; ATP hydrolysis is required for Dicer-2 to process long dsRNA, but not pre-miRNA. Wild-type Dicer-2, but not a mutant defective in ATP hydrolysis, can generate siRNAs faster than it can dissociate from a long dsRNA substrate. We propose that the Dicer-2 helicase domain uses ATP to generate many siRNAs from a single molecule of dsRNA before dissociating from its substrate."
+        },
+        {
+          "id": "6913227",
+          "text": "MicroRNA-Containing T-Regulatory-Cell-Derived Exosomes Suppress Pathogenic T Helper 1 Cells Foxp3(+) T regulatory (Treg) cells prevent inflammatory disease but the mechanistic basis of suppression is not understood completely. Gene silencing by RNA interference can act in a cell-autonomous and non-cell-autonomous manner, providing mechanisms of intercellular regulation. Here, we demonstrate that non-cell-autonomous gene silencing, mediated by miRNA-containing exosomes, is a mechanism employed by Treg cells to suppress T-cell-mediated disease. Treg cells transferred microRNAs (miRNA) to various immune cells, including T helper 1 (Th1) cells, suppressing Th1 cell proliferation and cytokine secretion. Use of Dicer-deficient or Rab27a and Rab27b double-deficient Treg cells to disrupt miRNA biogenesis or the exosomal pathway, respectively, established a requirement for miRNAs and exosomes for Treg-cell-mediated suppression. Transcriptional analysis and miRNA inhibitor studies showed that exosome-mediated transfer of Let-7d from Treg cell to Th1 cells contributed to suppression and prevention of systemic disease. These studies reveal a mechanism of Treg-cell-mediated suppression mediated by miRNA-containing exosomes."
+        },
+        {
+          "id": "5953485",
+          "text": "ADAR1 Forms a Complex with Dicer to Promote MicroRNA Processing and RNA-Induced Gene Silencing Adenosine deaminases acting on RNA (ADARs) are involved in RNA editing that converts adenosine residues to inosine specifically in double-stranded RNAs. In this study, we investigated the interaction of the RNA editing mechanism with the RNA interference (RNAi) machinery and found that ADAR1 forms a complex with Dicer through direct protein-protein interaction. Most importantly, ADAR1 increases the maximum rate (Vmax) of pre-microRNA (miRNA) cleavage by Dicer and facilitates loading of miRNA onto RNA-induced silencing complexes, identifying a new role of ADAR1 in miRNA processing and RNAi mechanisms. ADAR1 differentiates its functions in RNA editing and RNAi by the formation of either ADAR1/ADAR1 homodimer or Dicer/ADAR1 heterodimer complexes, respectively. As expected, the expression of miRNAs is globally inhibited in ADAR1(-/-) mouse embryos, which, in turn, alters the expression of their target genes and might contribute to their embryonic lethal phenotype."
+        }
+      ],
+      "gold": {
+        "5953485": [
+          [
+            248,
+            702
+          ]
+        ]
+      },
+      "gold_wire_bytes": 1105
+    },
+    {
+      "id": "50",
+      "query": "AIRE is expressed in some skin tumors.",
+      "documents": [
+        {
+          "id": "12580014",
+          "text": "Keratin-dependent regulation of Aire and gene expression in skin tumor keratinocytes Expression of the intermediate filament protein keratin 17 (K17) is robustly upregulated in inflammatory skin diseases and in many tumors originating in stratified and pseudostratified epithelia. We report that autoimmune regulator (Aire), a transcriptional regulator, is inducibly expressed in human and mouse tumor keratinocytes in a K17-dependent manner and is required for timely onset of Gli2-induced skin tumorigenesis in mice. The induction of Aire mRNA in keratinocytes depends on a functional interaction between K17 and the heterogeneous nuclear ribonucleoprotein hnRNP K. Further, K17 colocalizes with Aire protein in the nucleus of tumor-prone keratinocytes, and each factor is bound to a specific promoter region featuring an NF-κB consensus sequence in a relevant subset of K17- and Aire-dependent proinflammatory genes. These findings provide radically new insight into keratin intermediate filament and Aire function, along with a molecular basis for the K17-dependent amplification of inflammatory and immune responses in diseased epithelia."
+        },
+        {
+          "id": "24980622",
+          "text": "Hypoxia in relation to vasculature and proliferation in liver metastases in patients with colorectal cancer. PURPOSE To investigate hypoxia measured by pimonidazole binding, glucose transporter 1 (GLUT1) and carbonic anhydrase IX (CA-IX) expression, proliferation, and vascularity in liver metastases of colorectal cancer and to compare GLUT1 and CA-IX expression in corresponding primary tumors.   \n METHODS AND MATERIALS Twenty-five patients with liver metastases of colorectal cancer, planned for metastasectomy, were included. The hypoxia marker pimonidazole and proliferation marker iododeoxyuridine were administered before surgery. After immunofluorescent staining of the frozen metastases, pimonidazole binding, vascularity, and proliferation were analyzed quantitatively. Thirteen paraffin-embedded primary tumors were stained immunohistochemically for GLUT1 and CA-IX expression, which was analyzed semiquantitatively in primary tumors and corresponding liver metastases.   \n RESULTS In liver metastases, pimonidazole binding showed a pattern consistent with diffusion-limited hypoxia. The mean pimonidazole-positive fraction was 0.146; the mean distance from vessels to pimonidazole-positive areas was 80 microm. When expressed, often co-localization was observed between pimonidazole binding and GLUT1 or CA-IX expression, but microregional areas of mismatch were also observed. No correlation between the level of pimonidazole binding and GLUT1 or CA-IX expression was observed. In some patients, a large fraction (up to 30%) of proliferating cells was present in pimonidazole-stained areas. Expression of CA-IX in primary tumors and metastases showed a significant correlation, which was absent for GLUT1 expression.   \n CONCLUSIONS Compared with other tumor types, liver metastases of colorectal cancer contain large amounts of hypoxic cells. The lack of correlation with pimonidazole binding brings into question the value of GLUT1 and CA-IX as endogenous markers of hypoxia."
+        },
+        {
+          "id": "1554348",
+          "text": "Effect of hyperosmolality on alkaline phosphatase and stress-response protein 27 of MCF-7 breast cancer cells MCF-7, a continuous cell line derived from a human breast carcinoma, exhibits very low alkaline phosphatase (ALP) activity. The enzyme is heat-stable and is inhibited by L-phenylalanine and L-phenylalanylgly-cylglycine, but not by L-homoarginine, 1-bromotetramisole, or levamisole. These data indicate that MCF-7 produces term-placental ALP, the oncodevelopmental enzyme form inappropriately expressed by a variety of human tumors. In contrast to human cancer cells that produce this enzyme monophenotypically, ALP activity of MCF-7 cells is not significantly increased by glucocorticoids or sodium butyrate. By comparison, exposure to hyperosmolality causes a striking increase in enzyme activity. Cycloheximide blocks this effect. The results obtained with cell-free assays were confirmed by cytochemical and immunocytochemical assays on whole cells. Because some of the agents tested in the enzyme modulation experiments affect cell proliferation, their possible effect on two stress-response proteins (srp 27 and srp 72) was also examined; specific immunocytochemical assays were used. These tests revealed that neither protein is affected by glucocorticoids; that sodium butyrate has no effect on srp 27, but alters the intracellular distribution of srp 72; and that hyperosmolality, while not significantly affecting srp 72, causes an increase in srp 27."
+        }
+      ],
+      "gold": {
+        "12580014": [
+          [
+            281,
+            518
+          ]
+        ]
+      },
+      "gold_wire_bytes": 888
+    },
+    {
+      "id": "51",
+      "query": "ALDH1 expression is associated with better breast cancer outcomes.",
+      "documents": [
+        {
+          "id": "45638119",
+          "text": "ALDH1 is a marker of normal and malignant human mammary stem cells and a predictor of poor clinical outcome. Application of stem cell biology to breast cancer research has been limited by the lack of simple methods for identification and isolation of normal and malignant stem cells. Utilizing in vitro and in vivo experimental systems, we show that normal and cancer human mammary epithelial cells with increased aldehyde dehydrogenase activity (ALDH) have stem/progenitor properties. These cells contain the subpopulation of normal breast epithelium with the broadest lineage differentiation potential and greatest growth capacity in a xenotransplant model. In breast carcinomas, high ALDH activity identifies the tumorigenic cell fraction, capable of self-renewal and of generating tumors that recapitulate the heterogeneity of the parental tumor. In a series of 577 breast carcinomas, expression of ALDH1 detected by immunostaining correlated with poor prognosis. These findings offer an important new tool for the study of normal and malignant breast stem cells and facilitate the clinical application of stem cell concepts."
+        },
+        {
+          "id": "8963413",
+          "text": "PD-L1 expression in human cancers and its association with clinical outcomes PD-L1 is an immunoinhibitory molecule that suppresses the activation of T cells, leading to the progression of tumors. Overexpression of PD-L1 in cancers such as gastric cancer, hepatocellular carcinoma, renal cell carcinoma, esophageal cancer, pancreatic cancer, ovarian cancer, and bladder cancer is associated with poor clinical outcomes. In contrast, PD-L1 expression correlates with better clinical outcomes in breast cancer and merkel cell carcinoma. The prognostic value of PD-L1 expression in lung cancer, colorectal cancer, and melanoma is controversial. Blocking antibodies that target PD-1 and PD-L1 have achieved remarkable response rates in cancer patients who have PD-L1-overexpressing tumors. However, using PD-L1 as an exclusive predictive biomarker for cancer immunotherapy is questionable due to the low accuracy of PD-L1 immunohistochemistry staining. Factors that affect the accuracy of PD-L1 immunohistochemistry staining are as follows. First, antibodies used in different studies have different sensitivity. Second, in different studies, the cut-off value of PD-L1 staining positivity is different. Third, PD-L1 expression in tumors is not uniform, and sampling time and location may affect the results of PD-L1 staining. Therefore, better understanding of tumor microenvironment and use of other biomarkers such as gene marker and combined index are necessary to better identify patients who will benefit from PD-1/PD-L1 checkpoint blockade therapy."
+        },
+        {
+          "id": "23830488",
+          "text": "Expression of circadian genes correlates with liver metastasis and outcomes in colorectal cancer. Circadian rhythms are daily oscillations in various biological processes, generated by the feedback loops of eight core circadian genes: Period1 (Per1), Period2 (Per2), Period3 (Per3), Cryptochrome1 (Cry1), Cryptochrome2 (Cry2), Clock, Bmal1 and Casein Kinase I ε (CKIε). Recent studies have suggested that circadian genes participate in the growth and development of various cancers. This study examined the relations of circadian gene expression to clinicopathological factors and outcomes in patients with colorectal cancer. We studied surgical specimens of cancer tissue and adjacent normal mucosa obtained from 202 patients with untreated colorectal cancer. The relative expression levels of the circadian genes in the specimens were measured by quantitative real-time, reverse-transcription polymerase chain reaction. Expression of the Clock gene and the CKIε gene in cancer tissue were significantly higher compared to that in adjacent normal mucosa. Expression of the Per1 and Per3 genes in cancer tissue was significantly lower compared to that in adjacent normal mucosa. Analysis of the relations between clinicopathological features and expression of the eight circadian genes in cancer tissue showed that high expression of the Bmal1 gene and low expression of the Per1 gene correlated with liver metastasis. On analysis of the relations between outcomes and gene expression, high expression of the Per2 gene was associated with significantly better outcomes than low expression of the Per2 gene. Overexpression of the Bmal1 gene and reduced expression of the Per1 gene may thus be useful predictors of liver metastasis. Moreover, reduced expression of the Per2 gene may be a predictor of outcomes in patients with colorectal cancer."
+        }
+      ],
+      "gold": {
+        "45638119": [
+          [
+            851,
+            967
+          ]
+        ]
+      },
+      "gold_wire_bytes": 767
+    },
+    {
+      "id": "53",
+      "query": "ALDH1 expression is associated with poorer prognosis in breast cancer.",
+      "documents": [
+        {
+          "id": "10024681",
+          "text": "Epigenetic-induced repression of microRNA-205 is associated with MED1 activation and a poorer prognosis in localized prostate cancer Deregulation of microRNA (miRNA) expression can have a critical role in carcinogenesis. Here we show in prostate cancer that miRNA-205 (miR-205) transcription is commonly repressed and the MIR-205 locus is hypermethylated. LOC642587, the MIR-205 host gene of unknown function, is also concordantly inactivated. We show that miR-205 targets mediator 1 (MED1, also called TRAP220 and PPARBP) for transcriptional silencing in normal prostate cells, leading to reduction in MED1 mRNA levels, and in total and active phospho-MED1 protein. Overexpression of miR-205 in prostate cancer cells negatively affects cell viability, consistent with a tumor suppressor function. We found that hypermethylation of the MIR-205 locus was strongly related with a decrease in miR-205 expression and an increase in MED1 expression in primary tumor samples (n=14), when compared with matched normal prostate (n=7). An expanded patient cohort (tumor n=149, matched normal n=30) also showed significant MIR-205 DNA methylation in tumors compared with normal, and MIR-205 hypermethylation is significantly associated with biochemical recurrence (hazard ratio=2.005, 95% confidence interval (1.109, 3.625), P=0.02), in patients with low preoperative prostate specific antigen. In summary, these results suggest that miR-205 is an epigenetically regulated tumor suppressor that targets MED1 and may provide a potential biomarker in prostate cancer management."
+        },
+        {
+          "id": "45638119",
+          "text": "ALDH1 is a marker of normal and malignant human mammary stem cells and a predictor of poor clinical outcome. Application of stem cell biology to breast cancer research has been limited by the lack of simple methods for identification and isolation of normal and malignant stem cells. Utilizing in vitro and in vivo experimental systems, we show that normal and cancer human mammary epithelial cells with increased aldehyde dehydrogenase activity (ALDH) have stem/progenitor properties. These cells contain the subpopulation of normal breast epithelium with the broadest lineage differentiation potential and greatest growth capacity in a xenotransplant model. In breast carcinomas, high ALDH activity identifies the tumorigenic cell fraction, capable of self-renewal and of generating tumors that recapitulate the heterogeneity of the parental tumor. In a series of 577 breast carcinomas, expression of ALDH1 detected by immunostaining correlated with poor prognosis. These findings offer an important new tool for the study of normal and malignant breast stem cells and facilitate the clinical application of stem cell concepts."
+        },
+        {
+          "id": "29366489",
+          "text": "Deleted in liver cancer-1 (DLC-1): a tumor suppressor not just for liver. Deleted in liver cancer 1 (DLC-1), as its name implied, was originally isolated as a potential tumor suppressor gene often deleted in hepatocellular carcinoma. Further studies have indicated that down-expression of DLC-1 either by genomic deletion or DNA methylation is associated with a variety of cancer types including lung, breast, prostate, kidney, colon, uterus, ovary, and stomach. Re-expression of DLC-1 in cancer cells regulates the structure of actin cytoskeleton and focal adhesions and significantly inhibits cell growth, supporting its role as a tumor suppressor. This tumor suppressive function relies on DLC-1's RhoGTPase activating protein (RhoGAP) activity and steroidogenic acute regulatory (StAR)-related lipid transfer (START) domain, as well as its focal adhesion localization, which is recruited by the Src Homology 2 (SH2) domains of tensins in a phosphotyrosine-independent fashion. Therefore, the expression and subcellular localization of DLC-1 could be a useful molecular marker for cancer prognosis, whereas DLC-1 and its downstream signaling molecules might be therapeutic targets for the treatment of cancer."
+        }
+      ],
+      "gold": {
+        "45638119": [
+          [
+            851,
+            967
+          ]
+        ]
+      },
+      "gold_wire_bytes": 767
+    },
+    {
+      "id": "54",
+      "query": "AMP-activated protein kinase (AMPK) activation increases inflammation-related fibrosis in the lungs.",
+      "documents": [
+        {
+          "id": "49556906",
+          "text": "Metformin reverses established lung fibrosis in a bleomycin model Fibrosis is a pathological result of a dysfunctional repair response to tissue injury and occurs in a number of organs, including the lungs1. Cellular metabolism regulates tissue repair and remodelling responses to injury2-4. AMPK is a critical sensor of cellular bioenergetics and controls the switch from anabolic to catabolic metabolism5. However, the role of AMPK in fibrosis is not well understood. Here, we demonstrate that in humans with idiopathic pulmonary fibrosis (IPF) and in an experimental mouse model of lung fibrosis, AMPK activity is lower in fibrotic regions associated with metabolically active and apoptosis-resistant myofibroblasts. Pharmacological activation of AMPK in myofibroblasts from lungs of humans with IPF display lower fibrotic activity, along with enhanced mitochondrial biogenesis and normalization of sensitivity to apoptosis. In a bleomycin model of lung fibrosis in mice, metformin therapeutically accelerates the resolution of well-established fibrosis in an AMPK-dependent manner. These studies implicate deficient AMPK activation in non-resolving, pathologic fibrotic processes, and support a role for metformin (or other AMPK activators) to reverse established fibrosis by facilitating deactivation and apoptosis of myofibroblasts."
+        },
+        {
+          "id": "3419709",
+          "text": "Treatment of nonalcoholic fatty liver disease: role of AMPK. Nonalcoholic fatty liver disease (NAFLD) is a growing worldwide epidemic and an important risk factor for the development of insulin resistance, type 2 diabetes, nonalcoholic steatohepatitis (NASH), and hepatic cellular carcinoma (HCC). Despite the prevalence of NAFLD, lifestyle interventions involving exercise and weight loss are the only accepted treatments for this disease. Over the last decade, numerous experimental compounds have been shown to improve NAFLD in preclinical animal models, and many of these therapeutics have been shown to increase the activity of the cellular energy sensor AMP-activated protein kinase (AMPK). Because AMPK activity is reduced by inflammation, obesity, and diabetes, increasing AMPK activity has been viewed as a viable therapeutic strategy to improve NAFLD. In this review, we propose three primary mechanisms by which AMPK activation may improve NAFLD. In addition, we examine the mechanisms by which AMPK is activated. Finally, we identify 27 studies that have used AMPK activators to reduce NAFLD. Future considerations for studies examining the relationship between AMPK and NAFLD are highlighted."
+        },
+        {
+          "id": "32408470",
+          "text": "Activation of AMPKα2 in adipocytes is essential for nicotine-induced insulin resistance in vivo Cigarette smoking promotes body weight reduction in humans while paradoxically also promoting insulin resistance (IR) and hyperinsulinemia. However, the mechanisms behind these effects are unclear. Here we show that nicotine, a major constituent of cigarette smoke, selectively activates AMP-activated protein kinase α2 (AMPKα2) in adipocytes, which in turn phosphorylates MAP kinase phosphatase-1 (MKP1) at serine 334, initiating its proteasome-dependent degradation. The nicotine-dependent reduction of MKP1 induces the aberrant activation of both p38 mitogen-activated protein kinase and c-Jun N-terminal kinase, leading to increased phosphorylation of insulin receptor substrate 1 (IRS1) at serine 307. Phosphorylation of IRS1 leads to its degradation, protein kinase B inhibition, and the loss of insulin-mediated inhibition of lipolysis. Consequently, nicotine increases lipolysis, which results in body weight reduction, but this increase also elevates the levels of circulating free fatty acids and thus causes IR in insulin-sensitive tissues. These results establish AMPKα2 as an essential mediator of nicotine-induced whole-body IR in spite of reductions in adiposity."
+        }
+      ],
+      "gold": {
+        "49556906": [
+          [
+            720,
+            1338
+          ]
+        ]
+      },
+      "gold_wire_bytes": 1270
+    },
+    {
+      "id": "56",
+      "query": "APOE4 expression in iPSC-derived neurons increases AlphaBeta production and tau phosphorylation causing GABA neuron degeneration.",
+      "documents": [
+        {
+          "id": "4410181",
+          "text": "Metabolic rescue in pluripotent cells from patients with mtDNA disease Mitochondria have a major role in energy production via oxidative phosphorylation, which is dependent on the expression of critical genes encoded by mitochondrial (mt)DNA. Mutations in mtDNA can cause fatal or severely debilitating disorders with limited treatment options. Clinical manifestations vary based on mutation type and heteroplasmy (that is, the relative levels of mutant and wild-type mtDNA within each cell). Here we generated genetically corrected pluripotent stem cells (PSCs) from patients with mtDNA disease. Multiple induced pluripotent stem (iPS) cell lines were derived from patients with common heteroplasmic mutations including 3243A>G, causing mitochondrial encephalomyopathy and stroke-like episodes (MELAS), and 8993T>G and 13513G>A, implicated in Leigh syndrome. Isogenic MELAS and Leigh syndrome iPS cell lines were generated containing exclusively wild-type or mutant mtDNA through spontaneous segregation of heteroplasmic mtDNA in proliferating fibroblasts. Furthermore, somatic cell nuclear transfer (SCNT) enabled replacement of mutant mtDNA from homoplasmic 8993T>G fibroblasts to generate corrected Leigh-NT1 PSCs. Although Leigh-NT1 PSCs contained donor oocyte wild-type mtDNA (human haplotype D4a) that differed from Leigh syndrome patient haplotype (F1a) at a total of 47 nucleotide sites, Leigh-NT1 cells displayed transcriptomic profiles similar to those in embryo-derived PSCs carrying wild-type mtDNA, indicative of normal nuclear-to-mitochondrial interactions. Moreover, genetically rescued patient PSCs displayed normal metabolic function compared to impaired oxygen consumption and ATP production observed in mutant cells. We conclude that both reprogramming approaches offer complementary strategies for derivation of PSCs containing exclusively wild-type mtDNA, through spontaneous segregation of heteroplasmic mtDNA in individual iPS cell lines or mitochondrial replacement by SCNT in homoplasmic mtDNA-based disease."
+        },
+        {
+          "id": "11659421",
+          "text": "Human iPSC-based modeling of late-onset disease via progerin-induced aging. Reprogramming somatic cells to induced pluripotent stem cells (iPSCs) resets their identity back to an embryonic age and, thus, presents a significant hurdle for modeling late-onset disorders. In this study, we describe a strategy for inducing aging-related features in human iPSC-derived lineages and apply it to the modeling of Parkinson's disease (PD). Our approach involves expression of progerin, a truncated form of lamin A associated with premature aging. We found that expression of progerin in iPSC-derived fibroblasts and neurons induces multiple aging-related markers and characteristics, including dopamine-specific phenotypes such as neuromelanin accumulation. Induced aging in PD iPSC-derived dopamine neurons revealed disease phenotypes that require both aging and genetic susceptibility, such as pronounced dendrite degeneration, progressive loss of tyrosine hydroxylase (TH) expression, and enlarged mitochondria or Lewy-body-precursor inclusions. Thus, our study suggests that progerin-induced aging can be used to reveal late-onset age-related disease features in hiPSC-based disease models."
+        },
+        {
+          "id": "4709641",
+          "text": "Gain of toxic Apolipoprotein E4 effects in Human iPSC-Derived Neurons Is Ameliorated by a Small-Molecule Structure Corrector Efforts to develop drugs for Alzheimer's disease (AD) have shown promise in animal studies, only to fail in human trials, suggesting a pressing need to study AD in human model systems. Using human neurons derived from induced pluripotent stem cells that expressed apolipoprotein E4 (ApoE4), a variant of the APOE gene product and the major genetic risk factor for AD, we demonstrated that ApoE4-expressing neurons had higher levels of tau phosphorylation, unrelated to their increased production of amyloid-β (Aβ) peptides, and that they displayed GABAergic neuron degeneration. ApoE4 increased Aβ production in human, but not in mouse, neurons. Converting ApoE4 to ApoE3 by gene editing rescued these phenotypes, indicating the specific effects of ApoE4. Neurons that lacked APOE behaved similarly to those expressing ApoE3, and the introduction of ApoE4 expression recapitulated the pathological phenotypes, suggesting a gain of toxic effects from ApoE4. Treatment of ApoE4-expressing neurons with a small-molecule structure corrector ameliorated the detrimental effects, thus showing that correcting the pathogenic conformation of ApoE4 is a viable therapeutic approach for ApoE4-related AD."
+        }
+      ],
+      "gold": {
+        "4709641": [
+          [
+            310,
+            703
+          ]
+        ]
+      },
+      "gold_wire_bytes": 1046
+    },
+    {
+      "id": "57",
+      "query": "APOE4 expression in iPSC-derived neurons increases AlphaBeta production and tau phosphorylation, delaying GABA neuron degeneration.",
+      "documents": [
+        {
+          "id": "4423401",
+          "text": "Succinate is an inflammatory signal that induces IL-1β through HIF-1α Macrophages activated by the Gram-negative bacterial product lipopolysaccharide switch their core metabolism from oxidative phosphorylation to glycolysis. Here we show that inhibition of glycolysis with 2-deoxyglucose suppresses lipopolysaccharide-induced interleukin-1β but not tumour-necrosis factor-α in mouse macrophages. A comprehensive metabolic map of lipopolysaccharide-activated macrophages shows upregulation of glycolytic and downregulation of mitochondrial genes, which correlates directly with the expression profiles of altered metabolites. Lipopolysaccharide strongly increases the levels of the tricarboxylic-acid cycle intermediate succinate. Glutamine-dependent anerplerosis is the principal source of succinate, although the ‘GABA (γ-aminobutyric acid) shunt’ pathway also has a role. Lipopolysaccharide-induced succinate stabilizes hypoxia-inducible factor-1α, an effect that is inhibited by 2-deoxyglucose, with interleukin-1β as an important target. Lipopolysaccharide also increases succinylation of several proteins. We therefore identify succinate as a metabolite in innate immune signalling, which enhances interleukin-1β production during inflammation."
+        },
+        {
+          "id": "11659421",
+          "text": "Human iPSC-based modeling of late-onset disease via progerin-induced aging. Reprogramming somatic cells to induced pluripotent stem cells (iPSCs) resets their identity back to an embryonic age and, thus, presents a significant hurdle for modeling late-onset disorders. In this study, we describe a strategy for inducing aging-related features in human iPSC-derived lineages and apply it to the modeling of Parkinson's disease (PD). Our approach involves expression of progerin, a truncated form of lamin A associated with premature aging. We found that expression of progerin in iPSC-derived fibroblasts and neurons induces multiple aging-related markers and characteristics, including dopamine-specific phenotypes such as neuromelanin accumulation. Induced aging in PD iPSC-derived dopamine neurons revealed disease phenotypes that require both aging and genetic susceptibility, such as pronounced dendrite degeneration, progressive loss of tyrosine hydroxylase (TH) expression, and enlarged mitochondria or Lewy-body-precursor inclusions. Thus, our study suggests that progerin-induced aging can be used to reveal late-onset age-related disease features in hiPSC-based disease models."
+        },
+        {
+          "id": "4709641",
+          "text": "Gain of toxic Apolipoprotein E4 effects in Human iPSC-Derived Neurons Is Ameliorated by a Small-Molecule Structure Corrector Efforts to develop drugs for Alzheimer's disease (AD) have shown promise in animal studies, only to fail in human trials, suggesting a pressing need to study AD in human model systems. Using human neurons derived from induced pluripotent stem cells that expressed apolipoprotein E4 (ApoE4), a variant of the APOE gene product and the major genetic risk factor for AD, we demonstrated that ApoE4-expressing neurons had higher levels of tau phosphorylation, unrelated to their increased production of amyloid-β (Aβ) peptides, and that they displayed GABAergic neuron degeneration. ApoE4 increased Aβ production in human, but not in mouse, neurons. Converting ApoE4 to ApoE3 by gene editing rescued these phenotypes, indicating the specific effects of ApoE4. Neurons that lacked APOE behaved similarly to those expressing ApoE3, and the introduction of ApoE4 expression recapitulated the pathological phenotypes, suggesting a gain of toxic effects from ApoE4. Treatment of ApoE4-expressing neurons with a small-molecule structure corrector ameliorated the detrimental effects, thus showing that correcting the pathogenic conformation of ApoE4 is a viable therapeutic approach for ApoE4-related AD."
+        }
+      ],
+      "gold": {
+        "4709641": [
+          [
+            310,
+            703
+          ]
+        ]
+      },
+      "gold_wire_bytes": 1046
+    },
+    {
+      "id": "100",
+      "query": "All hematopoietic stem cells segregate their chromosomes randomly.",
+      "documents": [
+        {
+          "id": "15728433",
+          "text": "Tightrope act: autophagy in stem cell renewal, differentiation, proliferation, and aging Autophagy is a constitutive lysosomal catabolic pathway that degrades damaged organelles and protein aggregates. Stem cells are characterized by self-renewal, pluripotency, and quiescence; their long life span, limited capacity to dilute cellular waste and spent organelles due to quiescence, along with their requirement for remodeling in order to differentiate, all suggest that they require autophagy more than other cell types. Here, we review the current literature on the role of autophagy in embryonic and adult stem cells, including hematopoietic, mesenchymal, and neuronal stem cells, highlighting the diverse and contrasting roles autophagy plays in their biology. Furthermore, we review the few studies on stem cells, lysosomal activity, and autophagy. Novel techniques to detect autophagy in primary cells are required to study autophagy in different stem cell types. These will help to elucidate the importance of autophagy in stem cells during transplantation, a promising therapeutic approach for many diseases."
+        },
+        {
+          "id": "4381486",
+          "text": "Haematopoietic stem cells do not asymmetrically segregate chromosomes or retain BrdU Stem cells are proposed to segregate chromosomes asymmetrically during self-renewing divisions so that older (‘immortal’) DNA strands are retained in daughter stem cells whereas newly synthesized strands segregate to differentiating cells. Stem cells are also proposed to retain DNA labels, such as 5-bromo-2-deoxyuridine (BrdU), either because they segregate chromosomes asymmetrically or because they divide slowly. However, the purity of stem cells among BrdU-label-retaining cells has not been documented in any tissue, and the ‘immortal strand hypothesis’ has not been tested in a system with definitive stem cell markers. Here we tested these hypotheses in haematopoietic stem cells (HSCs), which can be highly purified using well characterized markers. We administered BrdU to newborn mice, mice treated with cyclophosphamide and granulocyte colony-stimulating factor, and normal adult mice for 4 to 10 days, followed by 70 days without BrdU. In each case, less than 6% of HSCs retained BrdU and less than 0.5% of all BrdU-retaining haematopoietic cells were HSCs, revealing that BrdU has poor specificity and poor sensitivity as an HSC marker. Sequential administration of 5-chloro-2-deoxyuridine and 5-iodo-2-deoxyuridine indicated that all HSCs segregate their chromosomes randomly. Division of individual HSCs in culture revealed no asymmetric segregation of the label. Thus, HSCs cannot be identified on the basis of BrdU-label retention and do not retain older DNA strands during division, indicating that these are not general properties of stem cells."
+        },
+        {
+          "id": "25516011",
+          "text": "Purification and characterization of mouse hematopoietic stem cells. Mouse bone marrow hematopoietic stem cells were isolated with the use of a variety of phenotypic markers. These cells can proliferate and differentiate with approximately unit efficiency into myelomonocytic cells, B cells, or T cells. Thirty of these cells are sufficient to save 50 percent of lethally irradiated mice, and to reconstitute all blood cell types in the survivors."
+        }
+      ],
+      "gold": {
+        "4381486": [
+          [
+            1237,
+            1377
+          ]
+        ]
+      },
+      "gold_wire_bytes": 793
+    },
+    {
+      "id": "115",
+      "query": "Anthrax spores can be disposed of easily after they are dispersed.",
+      "documents": [
+        {
+          "id": "22490293",
+          "text": "Production of cloned mice and ES cells from adult somatic cells by nuclear transfer: how to improve cloning efficiency? Although it has now been 10 years since the first cloned mammals were generated from somatic cells using nuclear transfer (NT), most cloned embryos usually undergo developmental arrest prior to or soon after implantation, and the success rate for producing live offspring by cloning remains below 5%. The low success rate is believed to be associated with epigenetic errors, including abnormal DNA hypermethylation, but the mechanism of \"reprogramming\" is unclear. We have been able to develop a stable NT method in the mouse in which donor nuclei are directly injected into the oocyte using a piezo-actuated micromanipulator. Especially in the mouse, only a few laboratories can make clones from adult somatic cells, and cloned mice are never successfully produced from most mouse strains. However, this technique promises to be an important tool for future research in basic biology. For example, NT can be used to generate embryonic stem (NT-ES) cell lines from a patient's own somatic cells. We have shown that NT-ES cells are equivalent to ES cells derived from fertilized embryos and that they can be generated relatively easily from a variety of mouse genotypes and cell types of both sexes, even though it may be more difficult to generate clones directly. In general, NT-ES cell techniques are expected to be applied to regenerative medicine; however, this technique can also be applied to the preservation of genetic resources of mouse strain instead of embryos, oocytes and spermatozoa. This review describes how to improve cloning efficiency and NT-ES cell establishment and further applications."
+        },
+        {
+          "id": "33872649",
+          "text": "Secondary aerosolization of viable Bacillus anthracis spores in a contaminated US Senate Office. CONTEXT Bioterrorist attacks involving letters and mail-handling systems in Washington, DC, resulted in Bacillus anthracis (anthrax) spore contamination in the Hart Senate Office Building and other facilities in the US Capitol's vicinity.   \n OBJECTIVE To provide information about the nature and extent of indoor secondary aerosolization of B anthracis spores.   \n DESIGN Stationary and personal air samples, surface dust, and swab samples were collected under semiquiescent (minimal activities) and then simulated active office conditions to estimate secondary aerosolization of B anthracis spores. Nominal size characteristics, airborne concentrations, and surface contamination of B anthracis particles (colony-forming units) were evaluated.   \n RESULTS Viable B anthracis spores reaerosolized under semiquiescent conditions, with a marked increase in reaerosolization during simulated active office conditions. Increases were observed for B anthracis collected on open sheep blood agar plates (P<.001) and personal air monitors (P =.01) during active office conditions. More than 80% of the B anthracis particles collected on stationary monitors were within an alveolar respirable size range of 0.95 to 3.5 micro m.   CONCLUSIONS Bacillus anthracis spores used in a recent terrorist incident reaerosolized under common office activities. These findings have important implications for appropriate respiratory protection, remediation, and reoccupancy of contaminated office environments."
+        },
+        {
+          "id": "7230315",
+          "text": "Inducible nitric oxide synthase in pulmonary alveolar macrophages from patients with tuberculosis The high-output pathway of nitric oxide production helps protect mice from infection by several pathogens, including Mycobacterium tuberculosis. However, based on studies of cells cultured from blood, it is controversial whether human mononuclear phagocytes can express the corresponding inducible nitric oxide synthase (iNOS;NOS2). The present study examined alveolar macrophages fixed directly after bronchopulmonary lavage. An average of 65% of the macrophages from 11 of 11 patients with untreated, culture-positive pulmonary tuberculosis reacted with an antibody documented herein to be monospecific for human NOS2. In contrast, a mean of 10% of bronchoalveolar lavage cells were positive from each of five clinically normal subjects. Tuberculosis patients' macrophages displayed diaphorase activity in the same proportion that they stained for NOS2, under assay conditions wherein the diaphorase reaction was strictly dependent on NOS2 expression. Bronchoalveolar lavage specimens also contained NOS2 mRNA. Thus, macrophages in the lungs of people with clinically active Mycobacterium tuberculosis infection often express catalytically competent NOS2."
+        }
+      ],
+      "gold": {
+        "33872649": [
+          [
+            1172,
+            1439
+          ]
+        ]
+      },
+      "gold_wire_bytes": 920
+    },
+    {
+      "id": "118",
+      "query": "Antibiotic induced alterations in the gut microbiome reduce resistance against Clostridium difficile",
+      "documents": [
+        {
+          "id": "6372244",
+          "text": "Antibiotic-induced shifts in the mouse gut microbiome and metabolome increase susceptibility to Clostridium difficile infection Antibiotics can have significant and long-lasting effects on the gastrointestinal tract microbiota, reducing colonization resistance against pathogens including Clostridium difficile. Here we show that antibiotic treatment induces substantial changes in the gut microbial community and in the metabolome of mice susceptible to C. difficile infection. Levels of secondary bile acids, glucose, free fatty acids and dipeptides decrease, whereas those of primary bile acids and sugar alcohols increase, reflecting the modified metabolic activity of the altered gut microbiome. In vitro and ex vivo analyses demonstrate that C. difficile can exploit specific metabolites that become more abundant in the mouse gut after antibiotics, including the primary bile acid taurocholate for germination, and carbon sources such as mannitol, fructose, sorbitol, raffinose and stachyose for growth. Our results indicate that antibiotic-mediated alteration of the gut microbiome converts the global metabolic profile to one that favours C. difficile germination and growth."
+        },
+        {
+          "id": "4465735",
+          "text": "Precision microbiome reconstitution restores bile acid mediated resistance to Clostridium difficile The gastrointestinal tracts of mammals are colonized by hundreds of microbial species that contribute to health, including colonization resistance against intestinal pathogens. Many antibiotics destroy intestinal microbial communities and increase susceptibility to intestinal pathogens. Among these, Clostridium difficile, a major cause of antibiotic-induced diarrhoea, greatly increases morbidity and mortality in hospitalized patients. Which intestinal bacteria provide resistance to C. difficile infection and their in vivo inhibitory mechanisms remain unclear. Here we correlate loss of specific bacterial taxa with development of infection, by treating mice with different antibiotics that result in distinct microbiota changes and lead to varied susceptibility to C. difficile. Mathematical modelling augmented by analyses of the microbiota of hospitalized patients identifies resistance-associated bacteria common to mice and humans. Using these platforms, we determine that Clostridium scindens, a bile acid 7α-dehydroxylating intestinal bacterium, is associated with resistance to C. difficile infection and, upon administration, enhances resistance to infection in a secondary bile acid dependent fashion. Using a workflow involving mouse models, clinical studies, metagenomic analyses, and mathematical modelling, we identify a probiotic candidate that corrects a clinically relevant microbiome deficiency. These findings have implications for the rational design of targeted antimicrobials as well as microbiome-based diagnostics and therapeutics for individuals at risk of C. difficile infection."
+        },
+        {
+          "id": "32454714",
+          "text": "Role of gut commensal microflora in the development of experimental autoimmune encephalomyelitis. Mucosal tolerance has been considered a potentially important pathway for the treatment of autoimmune disease, including human multiple sclerosis and experimental conditions such as experimental autoimmune encephalomyelitis (EAE). There is limited information on the capacity of commensal gut bacteria to induce and maintain peripheral immune tolerance. Inbred SJL and C57BL/6 mice were treated orally with a broad spectrum of antibiotics to reduce gut microflora. Reduction of gut commensal bacteria impaired the development of EAE. Intraperitoneal antibiotic-treated mice showed no significant decline in the gut microflora and developed EAE similar to untreated mice, suggesting that reduction in disease activity was related to alterations in the gut bacterial population. Protection was associated with a reduction of proinflammatory cytokines and increases in IL-10 and IL-13. Adoptive transfer of low numbers of IL-10-producing CD25(+)CD4(+) T cells (>75% FoxP3(+)) purified from cervical lymph nodes of commensal bacteria reduced mice and in vivo neutralization of CD25(+) cells suggested the role of regulatory T cells maintaining peripheral immune homeostasis. Our data demonstrate that antibiotic modification of gut commensal bacteria can modulate peripheral immune tolerance that can protect against EAE. This approach may offer a new therapeutic paradigm in the treatment of multiple sclerosis and perhaps other autoimmune conditions."
+        }
+      ],
+      "gold": {
+        "6372244": [
+          [
+            128,
+            311
+          ],
+          [
+            1011,
+            1184
+          ]
+        ]
+      },
+      "gold_wire_bytes": 1296
+    },
+    {
+      "id": "133",
+      "query": "Assembly of invadopodia is triggered by focal generation of phosphatidylinositol-3,4-biphosphate and the activation of the nonreceptor tyrosine kinase Src.",
+      "documents": [
+        {
+          "id": "37964706",
+          "text": "Local Ca2+ influx through Ca2+ release-activated Ca2+ (CRAC) channels stimulates production of an intracellular messenger and an intercellular pro-inflammatory signal. Ca2+ entry through store-operated Ca2+ channels drives the production of the pro-inflammatory molecule leukotriene C4 (LTC4) from mast cells through a pathway involving Ca2+-dependent protein kinase C, mitogen-activated protein kinases ERK1/2, phospholipase A2, and 5-lipoxygenase. Here we examine whether local Ca2+ influx through store-operated Ca2+ release-activated Ca2+ (CRAC) channels in the plasma membrane stimulates this signaling pathway. Manipulating the amplitude and spatial extent of Ca2+ entry by altering chemical and electrical gradients for Ca2+ influx or changing the Ca2+ buffering of the cytoplasm all impacted on protein kinase C and ERK activation, generation of arachidonic acid and LTC4 secretion, with little change in the bulk cytoplasmic Ca2+ rise. Similar bulk cytoplasmic Ca2+ concentrations were achieved when CRAC channels were activated in 0.25 mm external Ca2+ versus 2 mm Ca2+ and 100 nm La3+, an inhibitor of CRAC channels. However, despite similar bulk cytoplasmic Ca2+, protein kinase C activation and LTC4 secretion were larger in 2 mm Ca2+ and La3+ than in 0.25 mm Ca2+, consistent with the central involvement of a subplasmalemmal Ca2+ rise. The nonreceptor tyrosine kinase Syk coupled CRAC channel opening to protein kinase C and ERK activation. Recombinant TRPC3 channels also activated protein kinase C, suggesting that subplasmalemmal Ca2+ rather than a microdomain exclusive to CRAC channels is the trigger. Hence a subplasmalemmal Ca2+ increase in mast cells is highly versatile in that it triggers cytoplasmic responses through generation of intracellular messengers as well as long distance changes through increased secretion of paracrine signals."
+        },
+        {
+          "id": "16280642",
+          "text": "Sequential signals toward podosome formation in NIH-src cells Podosomes (also termed invadopodia in cancer cells) are actin-rich adhesion structures with matrix degradation activity that develop in various cell types. Despite their significant physiological importance, the molecular mechanism of podosome formation is largely unknown. In this study, we investigated the molecular mechanisms of podosome formation. The expression of various phosphoinositide-binding domains revealed that the podosomes in Src-transformed NIH3T3 (NIH-src) cells are enriched with PtdIns(3,4)P2, suggesting an important role of this phosphoinositide in podosome formation. Live-cell imaging analysis revealed that Src-expression stimulated podosome formation at focal adhesions of NIH3T3 cells after PtdIns(3,4)P2 accumulation. The adaptor protein Tks5/FISH, which is essential for podosome formation, was found to form a complex with Grb2 at adhesion sites in an Src-dependent manner. Further, it was found that N-WASP bound all SH3 domains of Tks5/FISH, which facilitated circular podosome formation. These results indicate that augmentation of the N-WASP-Arp2/3 signal was accomplished on the platform of Tks5/FISH-Grb2 complex at focal adhesions, which is stabilized by PtdIns(3,4)P2."
+        },
+        {
+          "id": "5914739",
+          "text": "Local changes in lipid environment of TCR microclusters regulate membrane binding by the CD3ε cytoplasmic domain The CD3ε and ζ cytoplasmic domains of the T cell receptor bind to the inner leaflet of the plasma membrane (PM), and a previous nuclear magnetic resonance structure showed that both tyrosines of the CD3ε immunoreceptor tyrosine-based activation motif partition into the bilayer. Electrostatic interactions between acidic phospholipids and clusters of basic CD3ε residues were previously shown to be essential for CD3ε and ζ membrane binding. Phosphatidylserine (PS) is the most abundant negatively charged lipid on the inner leaflet of the PM and makes a major contribution to membrane binding by the CD3ε cytoplasmic domain. Here, we show that TCR triggering by peptide--MHC complexes induces dissociation of the CD3ε cytoplasmic domain from the plasma membrane. Release of the CD3ε cytoplasmic domain from the membrane is accompanied by a substantial focal reduction in negative charge and available PS in TCR microclusters. These changes in the lipid composition of TCR microclusters even occur when TCR signaling is blocked with a Src kinase inhibitor. Local changes in the lipid composition of TCR microclusters thus render the CD3ε cytoplasmic domain accessible during early stages of T cell activation."
+        }
+      ],
+      "gold": {
+        "16280642": [
+          [
+            415,
+            808
+          ]
+        ]
+      },
+      "gold_wire_bytes": 1044
+    },
+    {
+      "id": "137",
+      "query": "Asymptomatic visual impairment screening in elderly populations does not lead to improved vision.",
+      "documents": [
+        {
+          "id": "26016929",
+          "text": "Effectiveness of screening older people for impaired vision in community setting: systematic review of evidence from randomised controlled trials. OBJECTIVE To assess whether population screening for impaired vision among older people in the community leads to improvements in vision.   \n DESIGN Systematic review of randomised controlled trials of population screening in the community that included any assessment of vision or visual function with at least 6 months' follow up.    SUBJECTS Adults aged 65 or over.   \n MAIN OUTCOME MEASURE Proportions with visual impairment in intervention and control groups with any method of assessing visual impairment.   \n RESULTS There were no trials that primarily assessed visual screening. Outcome data on vision were available for 3494 people in five trials of multiphasic assessment. All the trials used self reported measures for vision impairment, both as screening tools and as outcome measures. The inclusion of a visual screening component in the assessment did not result in improvements in self reported visual problems (pooled odds ratio 1.04:95% confidence interval 0.89 to 1.22). A small reduction (11%) in the number of older people with self reported visual problems cannot be excluded.   \n CONCLUSIONS Screening of asymptomatic older people in the community is not justified on present evidence. Visual impairment in this age group can usually be reduced with treatment. It is unclear why no benefit was seen. Further work is needed to clarify what interventions are appropriate for older people with unreported impairment of vision."
+        },
+        {
+          "id": "19675911",
+          "text": "Trends in heart failure incidence and survival in a community-based population. CONTEXT The epidemic of heart failure has yet to be fully investigated, and data on incidence, survival, and sex-specific temporal trends in community-based populations are limited.   \n OBJECTIVE To test the hypothesis that the incidence of heart failure has declined and survival after heart failure diagnosis has improved over time but that secular trends have diverged by sex.   \n DESIGN, SETTING, AND PARTICIPANTS Population-based cohort study using the resources of the Rochester Epidemiology Project conducted in Olmsted County, Minnesota. Patients were 4537 Olmsted County residents (57% women; mean [SD] age, 74 [14] years) with a diagnosis of heart failure between 1979 and 2000. Framingham criteria and clinical criteria were used to validate the diagnosis   MAIN OUTCOME MEASURES Incidence of heart failure and survival after heart failure diagnosis.   \n RESULTS The incidence of heart failure was higher among men (378/100 000 persons; 95% confidence interval [CI], 361-395 for men; 289/100 000 persons; 95% CI, 277-300 for women) and did not change over time among men or women. After a mean follow-up of 4.2 years (range, 0-23.8 years), 3347 deaths occurred, including 1930 among women and 1417 among men. Survival after heart failure diagnosis was worse among men than women (relative risk, 1.33; 95% CI, 1.24-1.43) but overall improved over time (5-year age-adjusted survival, 43% in 1979-1984 vs 52% in 1996-2000, P<.001). However, men and younger persons experienced larger survival gains, contrasting with less or no improvement for women and elderly persons.   \n CONCLUSION In this community-based cohort, the incidence of heart failure has not declined during 2 decades, but survival after onset of heart failure has increased overall, with less improvement among women and elderly persons."
+        },
+        {
+          "id": "313394",
+          "text": "A Functional Neuroimaging Study of Sound Localization: Visual Cortex Activity Predicts Performance in Early-Blind Individuals Blind individuals often demonstrate enhanced nonvisual perceptual abilities. However, the neural substrate that underlies this improved performance remains to be fully understood. An earlier behavioral study demonstrated that some early-blind people localize sounds more accurately than sighted controls using monaural cues. In order to investigate the neural basis of these behavioral differences in humans, we carried out functional imaging studies using positron emission tomography and a speaker array that permitted pseudo-free-field presentations within the scanner. During binaural sound localization, a sighted control group showed decreased cerebral blood flow in the occipital lobe, which was not seen in early-blind individuals. During monaural sound localization (one ear plugged), the subgroup of early-blind subjects who were behaviorally superior at sound localization displayed two activation foci in the occipital cortex. This effect was not seen in blind persons who did not have superior monaural sound localization abilities, nor in sighted individuals. The degree of activation of one of these foci was strongly correlated with sound localization accuracy across the entire group of blind subjects. The results show that those blind persons who perform better than sighted persons recruit occipital areas to carry out auditory localization under monaural conditions. We therefore conclude that computations carried out in the occipital cortex specifically underlie the enhanced capacity to use monaural cues. Our findings shed light not only on intermodal compensatory mechanisms, but also on individual differences in these mechanisms and on inhibitory patterns that differ between sighted individuals and those deprived of vision early in life."
+        }
+      ],
+      "gold": {
+        "26016929": [
+          [
+            945,
+            1135
+          ],
+          [
+            1249,
+            1354
+          ]
+        ]
+      },
+      "gold_wire_bytes": 1236
+    },
+    {
+      "id": "142",
+      "query": "Autologous transplantation of mesenchymal stem cells causes a higher rate of opportunistic infections than induction therapy with anti-interleukin-2 receptor antibodies.",
+      "documents": [
+        {
+          "id": "8563659",
+          "text": "Persistence of HIV-1 Receptor-Positive Cells after HSV-2 Reactivation: A Potential Mechanism for Increased HIV-1 Acquisition To explore the mechanism by which herpes simplex virus (HSV)-2 infection is related to HIV-1 acquisition, we conducted in situ analysis of the cellular infiltrate from sequential biopsies of HSV-2 lesions from patients on and off antiviral therapy. CD4(+) and CD8(+) T cells and a mixed population of plasmacytoid and myeloid dendritic cells (DCs), including cells expressing the C-type lectin receptor DC-SIGN, persisted at sites of HSV-2 reactivation for months after healing, even with daily antiviral therapy. The CD4(+) T cells that persisted reacted to HSV-2 antigen, were enriched for expression of the chemokine receptor CCR5, and were contiguous to DCs expressing the interleukin-3 receptor CD123 or DC-SIGN. Ex vivo infection with a CCR5-tropic strain of HIV-1 revealed greater concentrations of integrated HIV-1 DNA in cells derived from healed genital lesion biopsies than in cells from control skin biopsies. The persistence and enrichment of HIV receptor-positive inflammatory cells in the genitalia help explain the inability of anti-HSV-2 therapy to reduce HIV acquisition."
+        },
+        {
+          "id": "10582939",
+          "text": "Induction therapy with autologous mesenchymal stem cells in living-related kidney transplants: a randomized controlled trial. CONTEXT Antibody-based induction therapy plus calcineurin inhibitors (CNIs) reduce acute rejection rates in kidney recipients; however, opportunistic infections and toxic CNI effects remain challenging. Reportedly, mesenchymal stem cells (MSCs) have successfully treated graft-vs-host disease.   \n OBJECTIVE To assess autologous MSCs as replacement of antibody induction for patients with end-stage renal disease who undergo ABO-compatible, cross-match-negative kidney transplants from a living-related donor.   \n DESIGN, SETTING, AND PATIENTS One hundred fifty-nine patients were enrolled in this single-site, prospective, open-label, randomized study from February 2008-May 2009, when recruitment was completed.   \n INTERVENTION Patients were inoculated with marrow-derived autologous MSC (1-2 x 10(6)/kg) at kidney reperfusion and two weeks later. Fifty-three patients received standard-dose and 52 patients received low-dose CNIs (80% of standard); 51 patients in the control group received anti-IL-2 receptor antibody plus standard-dose CNIs.   \n MAIN OUTCOME MEASURES The primary measure was 1-year incidence of acute rejection and renal function (estimated glomerular filtration rate [eGFR]); the secondary measure was patient and graft survival and incidence of adverse events.   \n RESULTS Patient and graft survival at 13 to 30 months was similar in all groups. After 6 months, 4 of 53 patients (7.5%) in the autologous MSC plus standard-dose CNI group (95% CI, 0.4%-14.7%; P = .04) and 4 of 52 patients (7.7%) in the low-dose group (95% CI, 0.5%-14.9%; P = .046) compared with 11 of 51 controls (21.6%; 95% CI, 10.5%-32.6%) had biopsy-confirmed acute rejection. None of the patients in either autologous MSC group had glucorticoid-resistant rejection, whereas 4 patients (7.8%) in the control group did (95% CI, 0.6%-15.1%; overall P = .02). Renal function recovered faster among both MSC groups showing increased eGFR levels during the first month after surgery than the control group. Patients receiving standard-dose CNI had a mean difference of 6.2 mL/min per 1.73 m(2) (95% CI, 0.4-11.9; P=.04) and those in the low-dose CNI of 10.0 mL/min per 1.73 m(2) (95% CI, 3.8-16.2; P=.002). Also, during the 1-year follow-up, combined analysis of MSC-treated groups revealed significantly decreased risk of opportunistic infections than the control group (hazard ratio, 0.42; 95% CI, 0.20-0.85, P=.02)   CONCLUSION Among patients undergoing renal transplant, the use of autologous MSCs compared with anti-IL-2 receptor antibody induction therapy resulted in lower incidence of acute rejection, decreased risk of opportunistic infection, and better estimated renal function at 1 year.   \n TRIAL REGISTRATION clinicaltrials.gov Identifier: NCT00658073."
+        },
+        {
+          "id": "3935126",
+          "text": "Axicabtagene Ciloleucel CAR T‐Cell Therapy in Refractory Large B‐Cell Lymphoma Background In a phase 1 trial, axicabtagene ciloleucel (axi‐cel), an autologous anti‐CD19 chimeric antigen receptor (CAR) T‐cell therapy, showed efficacy in patients with refractory large B‐cell lymphoma after the failure of conventional therapy. Methods In this multicenter, phase 2 trial, we enrolled 111 patients with diffuse large B‐cell lymphoma, primary mediastinal B‐cell lymphoma, or transformed follicular lymphoma who had refractory disease despite undergoing recommended prior therapy. Patients received a target dose of 2×106 anti‐CD19 CAR T cells per kilogram of body weight after receiving a conditioning regimen of low‐dose cyclophosphamide and fludarabine. The primary end point was the rate of objective response (calculated as the combined rates of complete response and partial response). Secondary end points included overall survival, safety, and biomarker assessments. Results Among the 111 patients who were enrolled, axi‐cel was successfully manufactured for 110 (99%) and administered to 101 (91%). The objective response rate was 82%, and the complete response rate was 54%.With a median follow‐up of 15.4 months, 42% of the patients continued to have a response, with 40% continuing to have a complete response. The overall rate of survival at 18 months was 52%. The most common adverse events of grade 3 or higher during treatment were neutropenia (in 78% of the patients), anemia (in 43%), and thrombocytopenia (in 38%). Grade 3 or higher cytokine release syndrome and neurologic events occurred in 13% and 28% of the patients, respectively. Three of the patients died during treatment. Higher CAR T‐cell levels in blood were associated with response. Conclusions In this multicenter study, patients with refractory large B‐cell lymphoma who received CAR T‐cell therapy with axi‐cel had high levels of durable response, with a safety profile that included myelosuppression, the cytokine release syndrome, and neurologic events. (Funded by Kite Pharma and the Leukemia and Lymphoma Society Therapy Acceleration Program; ZUMA‐1 ClinicalTrials.gov number, NCT02348216.)"
+        }
+      ],
+      "gold": {
+        "10582939": [
+          [
+            2323,
+            2819
+          ]
+        ]
+      },
+      "gold_wire_bytes": 1150
+    },
+    {
+      "id": "143",
+      "query": "Autologous transplantation of mesenchymal stem cells causes fewer opportunistic infections than induction therapy with anti-interleukin-2 receptor antibodies.",
+      "documents": [
+        {
+          "id": "8563659",
+          "text": "Persistence of HIV-1 Receptor-Positive Cells after HSV-2 Reactivation: A Potential Mechanism for Increased HIV-1 Acquisition To explore the mechanism by which herpes simplex virus (HSV)-2 infection is related to HIV-1 acquisition, we conducted in situ analysis of the cellular infiltrate from sequential biopsies of HSV-2 lesions from patients on and off antiviral therapy. CD4(+) and CD8(+) T cells and a mixed population of plasmacytoid and myeloid dendritic cells (DCs), including cells expressing the C-type lectin receptor DC-SIGN, persisted at sites of HSV-2 reactivation for months after healing, even with daily antiviral therapy. The CD4(+) T cells that persisted reacted to HSV-2 antigen, were enriched for expression of the chemokine receptor CCR5, and were contiguous to DCs expressing the interleukin-3 receptor CD123 or DC-SIGN. Ex vivo infection with a CCR5-tropic strain of HIV-1 revealed greater concentrations of integrated HIV-1 DNA in cells derived from healed genital lesion biopsies than in cells from control skin biopsies. The persistence and enrichment of HIV receptor-positive inflammatory cells in the genitalia help explain the inability of anti-HSV-2 therapy to reduce HIV acquisition."
+        },
+        {
+          "id": "4427392",
+          "text": "Human cardiovascular progenitor cells develop from a KDR+ embryonic-stem-cell-derived population The functional heart is comprised of distinct mesoderm-derived lineages including cardiomyocytes, endothelial cells and vascular smooth muscle cells. Studies in the mouse embryo and the mouse embryonic stem cell differentiation model have provided evidence indicating that these three lineages develop from a common Flk-1+ (kinase insert domain protein receptor, also known as Kdr) cardiovascular progenitor that represents one of the earliest stages in mesoderm specification to the cardiovascular lineages. To determine whether a comparable progenitor is present during human cardiogenesis, we analysed the development of the cardiovascular lineages in human embryonic stem cell differentiation cultures. Here we show that after induction with combinations of activin A, bone morphogenetic protein 4 (BMP4), basic fibroblast growth factor (bFGF, also known as FGF2), vascular endothelial growth factor (VEGF, also known as VEGFA) and dickkopf homolog 1 (DKK1) in serum-free media, human embryonic-stem-cell-derived embryoid bodies generate a KDRlow/C-KIT(CD117)neg population that displays cardiac, endothelial and vascular smooth muscle potential in vitro and, after transplantation, in vivo. When plated in monolayer cultures, these KDRlow/C-KITneg cells differentiate to generate populations consisting of greater than 50% contracting cardiomyocytes. Populations derived from the KDRlow/C-KITneg fraction give rise to colonies that contain all three lineages when plated in methylcellulose cultures. Results from limiting dilution studies and cell-mixing experiments support the interpretation that these colonies are clones, indicating that they develop from a cardiovascular colony-forming cell. Together, these findings identify a human cardiovascular progenitor that defines one of the earliest stages of human cardiac development."
+        },
+        {
+          "id": "10582939",
+          "text": "Induction therapy with autologous mesenchymal stem cells in living-related kidney transplants: a randomized controlled trial. CONTEXT Antibody-based induction therapy plus calcineurin inhibitors (CNIs) reduce acute rejection rates in kidney recipients; however, opportunistic infections and toxic CNI effects remain challenging. Reportedly, mesenchymal stem cells (MSCs) have successfully treated graft-vs-host disease.   \n OBJECTIVE To assess autologous MSCs as replacement of antibody induction for patients with end-stage renal disease who undergo ABO-compatible, cross-match-negative kidney transplants from a living-related donor.   \n DESIGN, SETTING, AND PATIENTS One hundred fifty-nine patients were enrolled in this single-site, prospective, open-label, randomized study from February 2008-May 2009, when recruitment was completed.   \n INTERVENTION Patients were inoculated with marrow-derived autologous MSC (1-2 x 10(6)/kg) at kidney reperfusion and two weeks later. Fifty-three patients received standard-dose and 52 patients received low-dose CNIs (80% of standard); 51 patients in the control group received anti-IL-2 receptor antibody plus standard-dose CNIs.   \n MAIN OUTCOME MEASURES The primary measure was 1-year incidence of acute rejection and renal function (estimated glomerular filtration rate [eGFR]); the secondary measure was patient and graft survival and incidence of adverse events.   \n RESULTS Patient and graft survival at 13 to 30 months was similar in all groups. After 6 months, 4 of 53 patients (7.5%) in the autologous MSC plus standard-dose CNI group (95% CI, 0.4%-14.7%; P = .04) and 4 of 52 patients (7.7%) in the low-dose group (95% CI, 0.5%-14.9%; P = .046) compared with 11 of 51 controls (21.6%; 95% CI, 10.5%-32.6%) had biopsy-confirmed acute rejection. None of the patients in either autologous MSC group had glucorticoid-resistant rejection, whereas 4 patients (7.8%) in the control group did (95% CI, 0.6%-15.1%; overall P = .02). Renal function recovered faster among both MSC groups showing increased eGFR levels during the first month after surgery than the control group. Patients receiving standard-dose CNI had a mean difference of 6.2 mL/min per 1.73 m(2) (95% CI, 0.4-11.9; P=.04) and those in the low-dose CNI of 10.0 mL/min per 1.73 m(2) (95% CI, 3.8-16.2; P=.002). Also, during the 1-year follow-up, combined analysis of MSC-treated groups revealed significantly decreased risk of opportunistic infections than the control group (hazard ratio, 0.42; 95% CI, 0.20-0.85, P=.02)   CONCLUSION Among patients undergoing renal transplant, the use of autologous MSCs compared with anti-IL-2 receptor antibody induction therapy resulted in lower incidence of acute rejection, decreased risk of opportunistic infection, and better estimated renal function at 1 year.   \n TRIAL REGISTRATION clinicaltrials.gov Identifier: NCT00658073."
+        }
+      ],
+      "gold": {
+        "10582939": [
+          [
+            2323,
+            2819
+          ]
+        ]
+      },
+      "gold_wire_bytes": 1150
+    },
+    {
+      "id": "148",
+      "query": "Autophagy declines in aged organisms.",
+      "documents": [
+        {
+          "id": "1084345",
+          "text": "Restoration of chaperone-mediated autophagy in aging liver improves cellular maintenance and hepatic function Chaperone-mediated autophagy (CMA), a selective mechanism for degradation of cytosolic proteins in lysosomes, contributes to the removal of altered proteins as part of the cellular quality-control systems. We have previously found that CMA activity declines in aged organisms and have proposed that this failure in cellular clearance could contribute to the accumulation of altered proteins, the abnormal cellular homeostasis and, eventually, the functional loss characteristic of aged organisms. To determine whether these negative features of aging can be prevented by maintaining efficient autophagic activity until late in life, in this work we have corrected the CMA defect in aged rodents. We have generated a double transgenic mouse model in which the amount of the lysosomal receptor for CMA, previously shown to decrease in abundance with age, can be modulated. We have analyzed in this model the consequences of preventing the age-dependent decrease in receptor abundance in aged rodents at the cellular and organ levels. We show here that CMA activity is maintained until advanced ages if the decrease in the receptor abundance is prevented and that preservation of autophagic activity is associated with lower intracellular accumulation of damaged proteins, better ability to handle protein damage and improved organ function."
+        },
+        {
+          "id": "10012166",
+          "text": "The role of protein clearance mechanisms in organismal ageing and age-related diseases. The ability to maintain a functional proteome, or proteostasis, declines during the ageing process. Damaged and misfolded proteins accumulate with age, impairing cell function and tissue homeostasis. The accumulation of damaged proteins contributes to multiple age-related diseases such as Alzheimer's, Parkinson's or Huntington's disease. Damaged proteins are degraded by the ubiquitin-proteasome system or through autophagy-lysosome, key components of the proteostasis network. Modulation of either proteasome activity or autophagic-lysosomal potential extends lifespan and protects organisms from symptoms associated with proteostasis disorders, suggesting that protein clearance mechanisms are directly linked to ageing and age-associated diseases."
+        },
+        {
+          "id": "6277638",
+          "text": "Mechanisms of Life Span Extension by Rapamycin in the Fruit Fly Drosophila melanogaster The target of rapamycin (TOR) pathway is a major nutrient-sensing pathway that, when genetically downregulated, increases life span in evolutionarily diverse organisms including mammals. The central component of this pathway, TOR kinase, is the target of the inhibitory drug rapamycin, a highly specific and well-described drug approved for human use. We show here that feeding rapamycin to adult Drosophila produces the life span extension seen in some TOR mutants. Increase in life span by rapamycin was associated with increased resistance to both starvation and paraquat. Analysis of the underlying mechanisms revealed that rapamycin increased longevity specifically through the TORC1 branch of the TOR pathway, through alterations to both autophagy and translation. Rapamycin could increase life span of weak insulin/Igf signaling (IIS) pathway mutants and of flies with life span maximized by dietary restriction, indicating additional mechanisms."
+        }
+      ],
+      "gold": {
+        "1084345": [
+          [
+            316,
+            606
+          ]
+        ]
+      },
+      "gold_wire_bytes": 941
+    },
+    {
+      "id": "163",
+      "query": "Bariatric surgery has a positive impact on mental health.",
+      "documents": [
+        {
+          "id": "26199970",
+          "text": "Blockade of the angiotensin system improves mental health domain of quality of life: A meta-analysis of randomized clinical trials Objective: It is unclear whether blockade of the angiotensin system has effects on mental health. Our objective was to determine the impact of angiotensin converting enzyme inhibitors and angiotensin II type 1 receptor (AT1R) blockers on mental health domain of quality of life. Study design: Meta-analysis of published literature. Data sources: PubMed and clinicaltrials.gov databases. The last search was conducted in January 2017. Study selection: Randomized controlled trials comparing any angiotensin converting enzyme inhibitor or AT1R blocker versus placebo or non-angiotensin converting enzyme inhibitor or non-AT1R blocker were selected. Study participants were adults without any major physical symptoms. We adhered to meta-analysis reporting methods as per PRISMA and the Cochrane Collaboration. Data synthesis: Eleven studies were included in the analysis. When compared with placebo or other antihypertensive medications, AT1R blockers and angiotensin converting enzyme inhibitors were associated with improved overall quality of life (standard mean difference = 0.11, 95% confidence interval = [0.08, 0.14], p < 0.0001), positive wellbeing (standard mean difference = 0.11, 95% confidence interval = [0.05, 0.17], p < 0.0001), mental (standard mean difference = 0.15, 95% confidence interval = [0.06, 0.25], p < 0.0001), and anxiety (standard mean difference = 0.08, 95% confidence interval = [0.01, 0.16], p < 0.0001) domains of QoL. No significant difference was found for the depression domain (standard mean difference = 0.05, 95% confidence interval = [0.02, 0.12], p = 0.15). Conclusions: Use of angiotensin blockers and inhibitors for the treatment of hypertension in otherwise healthy adults is associated with improved mental health domains of quality of life. Mental health quality of life was a secondary outcome in the included studies. Research specifically designed to analyse the usefulness of drugs that block the angiotensin system is necessary to properly evaluate this novel psychiatric target."
+        },
+        {
+          "id": "18872233",
+          "text": "Mental Health Conditions Among Patients Seeking and Undergoing Bariatric Surgery: A Meta-analysis. IMPORTANCE Bariatric surgery is associated with sustained weight loss and improved physical health status for severely obese individuals. Mental health conditions may be common among patients seeking bariatric surgery; however, the prevalence of these conditions and whether they are associated with postoperative outcomes remains unknown.   \n OBJECTIVE To determine the prevalence of mental health conditions among bariatric surgery candidates and recipients, to evaluate the association between preoperative mental health conditions and health outcomes following bariatric surgery, and to evaluate the association between surgery and the clinical course of mental health conditions.   \n DATA SOURCES We searched PubMed, MEDLINE on OVID, and PsycINFO for studies published between January 1988 and November 2015. Study quality was assessed using an adapted tool for risk of bias; quality of evidence was rated based on GRADE (Grading of Recommendations Assessment, Development and Evaluation) criteria.   \n FINDINGS We identified 68 publications meeting inclusion criteria: 59 reporting the prevalence of preoperative mental health conditions (65,363 patients) and 27 reporting associations between preoperative mental health conditions and postoperative outcomes (50,182 patients). Among patients seeking and undergoing bariatric surgery, the most common mental health conditions, based on random-effects estimates of prevalence, were depression (19% [95% CI, 14%-25%]) and binge eating disorder (17% [95% CI, 13%-21%]). There was conflicting evidence regarding the association between preoperative mental health conditions and postoperative weight loss. Neither depression nor binge eating disorder was consistently associated with differences in weight outcomes. Bariatric surgery was, however, consistently associated with postoperative decreases in the prevalence of depression (7 studies; 8%-74% decrease) and the severity of depressive symptoms (6 studies; 40%-70% decrease).   \n CONCLUSIONS AND RELEVANCE Mental health conditions are common among bariatric surgery patients-in particular, depression and binge eating disorder. There is inconsistent evidence regarding the association between preoperative mental health conditions and postoperative weight loss. Moderate-quality evidence supports an association between bariatric surgery and lower rates of depression postoperatively."
+        },
+        {
+          "id": "43220289",
+          "text": "Psychological Outcome 4 Years after Restrictive Bariatric Surgery Extreme obesity is associated with severe psychiatric and somatic comorbidity and impairment of psychosocial functioning. Bariatric surgery is the most effective treatment not only with regard to weight loss but also with obesity-associated illnesses. Health-related psychological and psychosocial variables have been increasingly considered as important outcome variables of bariatric surgery. However, the long-term impact of bariatric surgery on psychological and psychosocial functioning is largely unclear. The aim of this study was to evaluate the relationship between the course of weight and psychological variables including depression, anxiety, health-related quality of life (HRQOL), and self-esteem up to 4 years after obesity surgery. By standardized questionnaires prior to (T1) and 1 year (T2), 2 years (T3), and 4 years (T4) after surgery, 148 patients (47 males (31.8 %), 101 females (68.2 %), mean age 38.8 ± 10.2 years) were assessed. On average, participants lost 24.6 % of their initial weight 1 year after surgery, 25.1 % after 2 years, and 22.3 % after 4 years. Statistical analysis revealed significant improvements in depressive symptoms, physical dimension of quality of life, and self-esteem with peak improvements 1 year after surgery. These improvements were largely maintained. Significant correlations between weight loss and improvements in depression, physical aspects of HRQOL (T2, T3, and T4), and self-esteem (T3) were observed. Corresponding to the considerable weight loss after bariatric surgery, important aspects of mental health improved significantly during the 4-year follow-up period. However, parallel to weight regain, psychological improvements showed a slow but not significant decline over time."
+        }
+      ],
+      "gold": {
+        "18872233": [
+          [
+            1866,
+            2086
+          ],
+          [
+            2369,
+            2491
+          ]
+        ]
+      },
+      "gold_wire_bytes": 1285
+    },
+    {
+      "id": "180",
+      "query": "Blocking the interaction between TDP-43 and respiratory complex I proteins ND3 and ND6 leads to increased TDP-43-induced neuronal loss.",
+      "documents": [
+        {
+          "id": "16966326",
+          "text": "The Inhibition of TDP-43 Mitochondrial Localization Blocks Its Neuronal Toxicity Genetic mutations in TAR DNA-binding protein 43 (TARDBP, also known as TDP-43) cause amyotrophic lateral sclerosis (ALS), and an increase in the presence of TDP-43 (encoded by TARDBP) in the cytoplasm is a prominent histopathological feature of degenerating neurons in various neurodegenerative diseases. However, the molecular mechanisms by which TDP-43 contributes to ALS pathophysiology remain elusive. Here we have found that TDP-43 accumulates in the mitochondria of neurons in subjects with ALS or frontotemporal dementia (FTD). Disease-associated mutations increase TDP-43 mitochondrial localization. In mitochondria, wild-type (WT) and mutant TDP-43 preferentially bind mitochondria-transcribed messenger RNAs (mRNAs) encoding respiratory complex I subunits ND3 and ND6, impair their expression and specifically cause complex I disassembly. The suppression of TDP-43 mitochondrial localization abolishes WT and mutant TDP-43-induced mitochondrial dysfunction and neuronal loss, and improves phenotypes of transgenic mutant TDP-43 mice. Thus, our studies link TDP-43 toxicity directly to mitochondrial bioenergetics and propose the targeting of TDP-43 mitochondrial localization as a promising therapeutic approach for neurodegeneration."
+        },
+        {
+          "id": "4270992",
+          "text": "MHC class II interaction with CD4 mediated by a region analogous to the MHC class I binding site for CD8 INTERACTIONS between major histocompatibility complex (MHC) molecules and the CD4 or CDS coreceptors have a major role in intrathymic T-cell selection1. On mature T cells, each of these two glycoproteins is associated with a class-specific bias in MHC molecule recognition by the T-cell receptor. CD4+ T cells respond to antigen in association with MHC class II molecules and CD8+ T cells respond to antigen in association with MHC class I molecules. Physical interaction between the CD4/MHC class II molecules and CD8/MHC class I molecules has been demonstrated by cell adhesion assay2–5, and a binding site for CDS on class I has been identified6,7. Here we demonstrate that a region of the MHC class IIβ-chain β2 domain, structurally analogous to the CDS-binding loop in the MHC class I α3 domain, is critical for function with both mouse and human CD4."
+        },
+        {
+          "id": "12462961",
+          "text": "GATA-4 and GATA-6 modulate tissue-specific transcription of the human gene for P450c17 by direct interaction with Sp1. Cytochrome P450c17 catalyzes steroidogenic 17alpha-hydroxylase and 17,20 lyase activities. Expression of the gene for P450c17 is cAMP dependent, tissue specific, developmentally programmed, and varies among species. Binding of Sp1, Sp3, and NF1-C (nuclear factor 1-C) to the first 227 bp of 5'flanking DNA (-227/LUC) is crucial for basal transcription in human NCI-H295A adrenal cells. Human placental JEG-3 cells contain Sp1, Sp3, and NF1, but do not express -227/LUC, even when transfected with a vector expressing steroidogenic factor 1 (SF-1). Therefore, other factors are essential for basal expression of P450c17. Deoxyribonuclease I footprinting and EMSAs identified a GATA consensus site at -64/-58 and an SF-1 site at -58/-50. RT-PCR identified GATA-4, GATA-6, and SF-1 in NCI-H295A cells and GATA-2 and GATA-3, but not GATA-4, GATA-6, or SF-1 in JEG-3 cells. Cotransfection of either GATA-4 or GATA-6 without SF-1 activated -227/LUC in JEG-3 cells, but cotransfection of GATA-2 or GATA-3 with or without SF-1 did not. Surprisingly, mutation of the GATA binding site in -227/LUC increased GATA-4 or GATA-6 induced activity, whereas mutation of the Sp1/Sp3 site decreased it. Furthermore, promoter constructs including the GATA site, but excluding the Sp1/Sp3 site at -196/-188, were not activated by GATA-4 or GATA-6, suggesting an interaction between Sp1/Sp3 and GATA-4 or GATA-6. Glutathione-S-transferase pull-down experiments and coimmunoprecipitation demonstrated interaction between GATA-4 or GATA-6 and Sp1, but not Sp3. Chromatin immunoprecipitation assays confirmed that this GATA-4/6 interaction with Sp1 occurred at the Sp site in the P450c17 promoter in NCI-H295A cells. Demethylation with 5-aza-2-deoxycytidine permitted JEG-3 cells to express endogenous P450c17, SF-1, GATA-4, GATA-6, and transfected -227/LUC. Thus, GATA-4 or GATA-6 and Sp1 together regulate expression of P450c17 in adrenal NCI-H295A cells and methylation of P450c17, GATA-4 and GATA-6 silence the expression of P450c17 in placental JEG-3 cells."
+        }
+      ],
+      "gold": {
+        "16966326": [
+          [
+            930,
+            1124
+          ]
+        ]
+      },
+      "gold_wire_bytes": 846
+    },
+    {
+      "id": "183",
+      "query": "Bone marrow cells contribute to adult macrophage compartments.",
+      "documents": [
+        {
+          "id": "3118719",
+          "text": "Regulation and function of the E-cadherin/catenin complex in cells of the monocyte-macrophage lineage and DCs. E-cadherin is best characterized as adherens junction protein, which through homotypic interactions contributes to the maintenance of the epithelial barrier function. In epithelial cells, the cytoplasmic tail of E-cadherin forms a dynamic complex with catenins and regulates several intracellular signal transduction pathways, including Wnt/β-catenin, PI3K/Akt, Rho GTPase, and NF-κB signaling. Recent progress uncovered a novel and critical role for this adhesion molecule in mononuclear phagocyte functions. E-cadherin regulates the maturation and migration of Langerhans cells, and its ligation prevents the induction of a tolerogenic state in bone marrow-derived dendritic cells (DCs). In this respect, the functionality of β-catenin could be instrumental in determining the balance between immunogenicity and tolerogenicity of DCs in vitro and in vivo. Fusion of alternatively activated macrophages and osteoclasts is also E-cadherin-dependent. In addition, the E-cadherin ligands CD103 and KLRG1 are expressed on DC-, T-, and NK-cell subsets and contribute to their interaction with E-cadherin-expressing DCs and macrophages. Here we discuss the regulation, function, and implications of E-cadherin expression in these central orchestrators of the immune system."
+        },
+        {
+          "id": "12827098",
+          "text": "Tissue-resident macrophages self-maintain locally throughout adult life with minimal contribution from circulating monocytes. Despite accumulating evidence suggesting local self-maintenance of tissue macrophages in the steady state, the dogma remains that tissue macrophages derive from monocytes. Using parabiosis and fate-mapping approaches, we confirmed that monocytes do not show significant contribution to tissue macrophages in the steady state. Similarly, we found that after depletion of lung macrophages, the majority of repopulation occurred by stochastic cellular proliferation in situ in a macrophage colony-stimulating factor (M-Csf)- and granulocyte macrophage (GM)-CSF-dependent manner but independently of interleukin-4. We also found that after bone marrow transplantation, host macrophages retained the capacity to expand when the development of donor macrophages was compromised. Expansion of host macrophages was functional and prevented the development of alveolar proteinosis in mice transplanted with GM-Csf-receptor-deficient progenitors. Collectively, these results indicate that tissue-resident macrophages and circulating monocytes should be classified as mononuclear phagocyte lineages that are independently maintained in the steady state."
+        },
+        {
+          "id": "46193388",
+          "text": "Turning blood into brain: cells bearing neuronal antigens generated in vivo from bone marrow. Bone marrow stem cells give rise to a variety of hematopoietic lineages and repopulate the blood throughout adult life. We show that, in a strain of mice incapable of developing cells of the myeloid and lymphoid lineages, transplanted adult bone marrow cells migrated into the brain and differentiated into cells that expressed neuron-specific antigens. These findings raise the possibility that bone marrow-derived cells may provide an alternative source of neurons in patients with neurodegenerative diseases or central nervous system injury."
+        }
+      ],
+      "gold": {
+        "12827098": [
+          [
+            737,
+            898
+          ]
+        ]
+      },
+      "gold_wire_bytes": 812
+    },
+    {
+      "id": "208",
+      "query": "CHEK2 is not associated with breast cancer.",
+      "documents": [
+        {
+          "id": "29366489",
+          "text": "Deleted in liver cancer-1 (DLC-1): a tumor suppressor not just for liver. Deleted in liver cancer 1 (DLC-1), as its name implied, was originally isolated as a potential tumor suppressor gene often deleted in hepatocellular carcinoma. Further studies have indicated that down-expression of DLC-1 either by genomic deletion or DNA methylation is associated with a variety of cancer types including lung, breast, prostate, kidney, colon, uterus, ovary, and stomach. Re-expression of DLC-1 in cancer cells regulates the structure of actin cytoskeleton and focal adhesions and significantly inhibits cell growth, supporting its role as a tumor suppressor. This tumor suppressive function relies on DLC-1's RhoGTPase activating protein (RhoGAP) activity and steroidogenic acute regulatory (StAR)-related lipid transfer (START) domain, as well as its focal adhesion localization, which is recruited by the Src Homology 2 (SH2) domains of tensins in a phosphotyrosine-independent fashion. Therefore, the expression and subcellular localization of DLC-1 could be a useful molecular marker for cancer prognosis, whereas DLC-1 and its downstream signaling molecules might be therapeutic targets for the treatment of cancer."
+        },
+        {
+          "id": "4886637",
+          "text": "Diabetes, metabolic syndrome, and breast cancer: a review of the current evidence. Incidences of breast cancer, type 2 diabetes, and metabolic syndrome have increased over the past decades with the obesity epidemic, especially in industrialized countries. Insulin resistance, hyperinsulinemia, and changes in the signaling of growth hormones and steroid hormones associated with diabetes may affect the risk of breast cancer. We reviewed epidemiologic studies of the association between type 2 diabetes and risk of breast cancer and the available evidence on the role of hormonal mediators of an association between diabetes and breast cancer. The combined evidence supports a modest association between type 2 diabetes and the risk of breast cancer, which appears to be more consistent among postmenopausal than among premenopausal women. Despite many proposed potential pathways, the mechanisms underlying an association between diabetes and breast cancer risk remain unclear, particularly because the 2 diseases share several risk factors, including obesity, a sedentary lifestyle, and possibly intake of saturated fat and refined carbohydrates, that may confound this association. Although the metabolic syndrome is closely related to diabetes and embraces additional components that might influence breast cancer risk, the role of the metabolic syndrome in breast carcinogenesis has not been studied and thus remains unknown."
+        },
+        {
+          "id": "13519661",
+          "text": "Linkage Disequilibrium Mapping of       CHEK2: Common Variation and Breast Cancer Risk      Background Checkpoint kinase 2 (CHEK2) averts cancer development by promoting cell cycle arrest and activating DNA repair in genetically damaged cells. Previous investigation has established a role for the CHEK2 gene in breast cancer aetiology, but studies have largely been limited to the rare 1100delC mutation. Whether common polymorphisms in this gene influence breast cancer risk remains unknown. In this study, we aimed to assess the importance of common CHEK2 variants on population risk for breast cancer by capturing the majority of diversity in the gene using haplotype tagging single nucleotide polymorphisms (tagSNPs). Methods and Findings We analyzed 14 common SNPs spanning 52 kilobases (kb) of the CHEK2 gene in 92 Swedish women. Coverage evaluation indicated that these typed SNPs would efficiently convey association signal also from untyped SNPs in the same region. Six of the 14 SNPs predicted well both the haplotypic and single SNP variations within CHEK2. We genotyped these six tagSNPs in 1,577 postmenopausal breast cancer cases and 1,513 population controls, but found no convincing association between any common CHEK2 haplotype and breast cancer risk. The 1100delC mutation was rare in our Swedish population—0.7% in cases and 0.4% in controls— with a corresponding odds ratio for carriers versus noncarriers of 2.26 (95% confidence interval, 0.99–5.15). Estimates of the population frequency and the odds ratio of 1100delC indicate that our sample is representative of a Northern European population."
+        }
+      ],
+      "gold": {
+        "13519661": [
+          [
+            1070,
+            1270
+          ]
+        ]
+      },
+      "gold_wire_bytes": 853
+    },
+    {
+      "id": "216",
+      "query": "CX3CR1 on the Th2 cells impairs T cell survival",
+      "documents": [
+        {
+          "id": "22210434",
+          "text": "The kinase TAK1 integrates antigen and cytokine receptor signaling for T cell development, survival and function The kinase TAK1 is critical for innate and B cell immunity. The function of TAK1 in T cells is unclear, however. We show here that T cell–specific deletion of the gene encoding TAK1 resulted in reduced development of thymocytes, especially of regulatory T cells expressing the transcription factor Foxp3. In mature thymocytes, TAK1 was required for interleukin 7–mediated survival and T cell receptor–dependent activation of transcription factor NF-κB and the kinase Jnk. In effector T cells, TAK1 was dispensable for T cell receptor–dependent NF-κB activation and cytokine production, but was important for proliferation and activation of the kinase p38 in response to interleukins 2, 7 and 15. Thus, TAK1 is essential for the integration of T cell receptor and cytokine signals to regulate the development, survival and function of T cells."
+        },
+        {
+          "id": "22174015",
+          "text": "PI3K-Akt-mTORC1-S6K1/2 axis controls Th17 differentiation by regulating Gfi1 expression and nuclear translocation of RORγ. The PI3K-Akt-mTORC1 axis contributes to the activation, survival, and proliferation of CD4(+) T cells upon stimulation through TCR and CD28. Here, we demonstrate that the suppression of this axis by deletion of p85α or PI3K/mTORC1 inhibitors as well as T cell-specific deletion of raptor, an essential component of mTORC1, impairs Th17 differentiation in vitro and in vivo in a S6K1/2-dependent fashion. Inhibition of PI3K-Akt-mTORC1-S6K1 axis impairs the downregulation of Gfi1, a negative regulator of Th17 differentiation. Furthermore, we demonstrate that S6K2, a nuclear counterpart of S6K1, is induced by the PI3K-Akt-mTORC1 axis, binds RORγ, and carries RORγ to the nucleus. These results point toward a pivotal role of PI3K-Akt-mTORC1-S6K1/2 axis in Th17 differentiation."
+        },
+        {
+          "id": "21366394",
+          "text": "CX3CR1 is required for airway inflammation by promoting T helper cell survival and maintenance in inflamed lung Allergic asthma is a T helper type 2 (T(H)2)-dominated disease of the lung. In people with asthma, a fraction of CD4(+) T cells express the CX3CL1 receptor, CX3CR1, and CX3CL1 expression is increased in airway smooth muscle, lung endothelium and epithelium upon allergen challenge. Here we found that untreated CX3CR1-deficient mice or wild-type (WT) mice treated with CX3CR1-blocking reagents show reduced lung disease upon allergen sensitization and challenge. Transfer of WT CD4(+) T cells into CX3CR1-deficient mice restored the cardinal features of asthma, and CX3CR1-blocking reagents prevented airway inflammation in CX3CR1-deficient recipients injected with WT T(H)2 cells. We found that CX3CR1 signaling promoted T(H)2 survival in the inflamed lungs, and injection of B cell leukemia/lymphoma-2 protein (BCl-2)-transduced CX3CR1-deficient T(H)2 cells into CX3CR1-deficient mice restored asthma. CX3CR1-induced survival was also observed for T(H)1 cells upon airway inflammation but not under homeostatic conditions or upon peripheral inflammation. Therefore, CX3CR1 and CX3CL1 may represent attractive therapeutic targets in asthma."
+        }
+      ],
+      "gold": {
+        "21366394": [
+          [
+            794,
+            1015
+          ]
+        ]
+      },
+      "gold_wire_bytes": 873
+    },
+    {
+      "id": "217",
+      "query": "CX3CR1 on the Th2 cells promotes T cell survival",
+      "documents": [
+        {
+          "id": "21366394",
+          "text": "CX3CR1 is required for airway inflammation by promoting T helper cell survival and maintenance in inflamed lung Allergic asthma is a T helper type 2 (T(H)2)-dominated disease of the lung. In people with asthma, a fraction of CD4(+) T cells express the CX3CL1 receptor, CX3CR1, and CX3CL1 expression is increased in airway smooth muscle, lung endothelium and epithelium upon allergen challenge. Here we found that untreated CX3CR1-deficient mice or wild-type (WT) mice treated with CX3CR1-blocking reagents show reduced lung disease upon allergen sensitization and challenge. Transfer of WT CD4(+) T cells into CX3CR1-deficient mice restored the cardinal features of asthma, and CX3CR1-blocking reagents prevented airway inflammation in CX3CR1-deficient recipients injected with WT T(H)2 cells. We found that CX3CR1 signaling promoted T(H)2 survival in the inflamed lungs, and injection of B cell leukemia/lymphoma-2 protein (BCl-2)-transduced CX3CR1-deficient T(H)2 cells into CX3CR1-deficient mice restored asthma. CX3CR1-induced survival was also observed for T(H)1 cells upon airway inflammation but not under homeostatic conditions or upon peripheral inflammation. Therefore, CX3CR1 and CX3CL1 may represent attractive therapeutic targets in asthma."
+        },
+        {
+          "id": "22174015",
+          "text": "PI3K-Akt-mTORC1-S6K1/2 axis controls Th17 differentiation by regulating Gfi1 expression and nuclear translocation of RORγ. The PI3K-Akt-mTORC1 axis contributes to the activation, survival, and proliferation of CD4(+) T cells upon stimulation through TCR and CD28. Here, we demonstrate that the suppression of this axis by deletion of p85α or PI3K/mTORC1 inhibitors as well as T cell-specific deletion of raptor, an essential component of mTORC1, impairs Th17 differentiation in vitro and in vivo in a S6K1/2-dependent fashion. Inhibition of PI3K-Akt-mTORC1-S6K1 axis impairs the downregulation of Gfi1, a negative regulator of Th17 differentiation. Furthermore, we demonstrate that S6K2, a nuclear counterpart of S6K1, is induced by the PI3K-Akt-mTORC1 axis, binds RORγ, and carries RORγ to the nucleus. These results point toward a pivotal role of PI3K-Akt-mTORC1-S6K1/2 axis in Th17 differentiation."
+        },
+        {
+          "id": "22210434",
+          "text": "The kinase TAK1 integrates antigen and cytokine receptor signaling for T cell development, survival and function The kinase TAK1 is critical for innate and B cell immunity. The function of TAK1 in T cells is unclear, however. We show here that T cell–specific deletion of the gene encoding TAK1 resulted in reduced development of thymocytes, especially of regulatory T cells expressing the transcription factor Foxp3. In mature thymocytes, TAK1 was required for interleukin 7–mediated survival and T cell receptor–dependent activation of transcription factor NF-κB and the kinase Jnk. In effector T cells, TAK1 was dispensable for T cell receptor–dependent NF-κB activation and cytokine production, but was important for proliferation and activation of the kinase p38 in response to interleukins 2, 7 and 15. Thus, TAK1 is essential for the integration of T cell receptor and cytokine signals to regulate the development, survival and function of T cells."
+        }
+      ],
+      "gold": {
+        "21366394": [
+          [
+            794,
+            1015
+          ]
+        ]
+      },
+      "gold_wire_bytes": 873
+    },
+    {
+      "id": "219",
+      "query": "CX3CR1 on the Th2 cells suppresses airway inflammation.",
+      "documents": [
+        {
+          "id": "21366394",
+          "text": "CX3CR1 is required for airway inflammation by promoting T helper cell survival and maintenance in inflamed lung Allergic asthma is a T helper type 2 (T(H)2)-dominated disease of the lung. In people with asthma, a fraction of CD4(+) T cells express the CX3CL1 receptor, CX3CR1, and CX3CL1 expression is increased in airway smooth muscle, lung endothelium and epithelium upon allergen challenge. Here we found that untreated CX3CR1-deficient mice or wild-type (WT) mice treated with CX3CR1-blocking reagents show reduced lung disease upon allergen sensitization and challenge. Transfer of WT CD4(+) T cells into CX3CR1-deficient mice restored the cardinal features of asthma, and CX3CR1-blocking reagents prevented airway inflammation in CX3CR1-deficient recipients injected with WT T(H)2 cells. We found that CX3CR1 signaling promoted T(H)2 survival in the inflamed lungs, and injection of B cell leukemia/lymphoma-2 protein (BCl-2)-transduced CX3CR1-deficient T(H)2 cells into CX3CR1-deficient mice restored asthma. CX3CR1-induced survival was also observed for T(H)1 cells upon airway inflammation but not under homeostatic conditions or upon peripheral inflammation. Therefore, CX3CR1 and CX3CL1 may represent attractive therapeutic targets in asthma."
+        },
+        {
+          "id": "40365566",
+          "text": "Conventional and monocyte-derived CD11b(+) dendritic cells initiate and maintain T helper 2 cell-mediated immunity to house dust mite allergen. Dendritic cells (DCs) are crucial for mounting allergic airway inflammation, but it is unclear which subset of DCs performs this task. By using CD64 and MAR-1 staining, we reliably separated CD11b(+) monocyte-derived DCs (moDCs) from conventional DCs (cDCs) and studied antigen uptake, migration, and presentation assays of lung and lymph node (LN) DCs in response to inhaled house dust mite (HDM). Mainly CD11b(+) cDCs but not CD103(+) cDCs induced T helper 2 (Th2) cell immunity in HDM-specific T cells in vitro and asthma in vivo. Studies in Flt3l(-/-) mice, lacking all cDCs, revealed that moDCs were also sufficient to induce Th2 cell-mediated immunity but only when high-dose HDM was given. The main function of moDCs was the production of proinflammatory chemokines and allergen presentation in the lung during challenge. Thus, we have identified migratory CD11b(+) cDCs as the principal subset inducing Th2 cell-mediated immunity in the LN, whereas moDCs orchestrate allergic inflammation in the lung."
+        },
+        {
+          "id": "14492339",
+          "text": "Blood monocytes consist of two principal subsets with distinct migratory properties Peripheral blood monocytes are a heterogeneous population of circulating leukocytes. Using a murine adoptive transfer system to probe monocyte homing and differentiation in vivo, we identified two functional subsets among murine blood monocytes: a short-lived CX(3)CR1(lo)CCR2(+)Gr1(+) subset that is actively recruited to inflamed tissues and a CX(3)CR1(hi)CCR2(-)Gr1(-) subset characterized by CX(3)CR1-dependent recruitment to noninflamed tissues. Both subsets have the potential to differentiate into dendritic cells in vivo. The level of CX(3)CR1 expression also defines the two major human monocyte subsets, the CD14(+)CD16(-) and CD14(lo)CD16(+) monocytes, which share phenotype and homing potential with the mouse subsets. These findings raise the potential for novel therapeutic strategies in inflammatory diseases."
+        }
+      ],
+      "gold": {
+        "21366394": [
+          [
+            394,
+            793
+          ]
+        ]
+      },
+      "gold_wire_bytes": 1050
+    }
+  ]
+}
