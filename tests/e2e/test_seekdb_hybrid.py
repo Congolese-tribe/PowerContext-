@@ -30,10 +30,11 @@ from time import perf_counter
 import pytest
 from sqlalchemy import Engine, event
 
-from powercontext.builtin.artifacts.memory import EmbeddingProfile, MemoryEntryInput, MemorySearchRequest
+from powercontext.builtin.artifacts.memory import EmbeddingProfile, MemoryEntryInput, MemorySearchRequest, MemoryService
 from powercontext.builtin.artifacts.memory.canonical import normalize_query
 from powercontext.builtin.artifacts.memory.models import MemoryQueryEmbedding
 from powercontext.builtin.inference import EmbeddingResult
+from powercontext.builtin.persistence.memory import RelationalMemoryBackend
 from powercontext.builtin.persistence.memory_index import CompositeMemoryIndex
 from powercontext.builtin.persistence.seekdb import SeekDBConfig
 from powercontext.builtin.persistence.seekdb.memory_index import SeekDBMemoryIndex
@@ -132,7 +133,20 @@ async def _filtered_candidates(contexts, model):
     head = await memory.remember(
         memory=None, entries=tuple(MemoryEntryInput(kind="fact", text=text) for text in texts[:3]), mode="append"
     )
-    decoy = await memory.remember(memory=None, entries=(MemoryEntryInput(kind="fact", text=texts[3]),), mode="append")
+    # Runtime uses one default Memory identity per scope; a separately configured
+    # service creates another artifact through the same backend and native index.
+    other_memory = MemoryService(
+        backend=RelationalMemoryBackend(
+            database=contexts.database,
+            scope_id="filtered-scope",
+            artifacts=contexts.repositories.artifacts,
+            index=contexts.index,
+        ),
+        embedding_model=model,
+    )
+    decoy = await other_memory.remember(
+        memory=None, entries=(MemoryEntryInput(kind="fact", text=texts[3]),), mode="append"
+    )
     assert head is not None and decoy is not None
     entries = {entry.text: entry for entry in await memory.entries(head)}
     for text, labels in zip(texts[:3], (("red",), ("blue",), ("red", "blue")), strict=True):

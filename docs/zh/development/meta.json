@@ -12,6 +12,7 @@
     "pydantic-ai-inference",
     "remote-access-implementation",
     "dashboard",
-    "desktop-delivery-plan"
+    "desktop-delivery-plan",
+    "seekdb-hybrid"
   ]
 }
